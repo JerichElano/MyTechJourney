@@ -1,0 +1,117 @@
+/* Import Google Fonts for Poppins and Urbanist */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200..700&family=Urbanist:wght@200..700&display=swap');
+
+/* Define custom fonts (if self-hosted) */
+@font-face {
+    font-family: 'Telegraf';
+    src: url('/fonts/telegraf-regular.woff2') format('woff2'),
+         url('/fonts/telegraf-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SF Pro';
+    src: url('/fonts/sf-pro-regular.woff2') format('woff2'),
+         url('/fonts/sf-pro-regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+:root {
+    --big-stone-black:  #00000055;
+    --frost-white: #f7faf6;
+    --aqua-island-light-blue: #a8dadc;
+    --wedgewood-blue: #457b9d;
+
+    --blue: #6db3ed;
+    --red: #f05e4d;
+    --yellow: #fec126;
+    --white: #ffffff;
+    --accent: #2c2d32;
+    --black: #000000;
+
+    --main-font: "SF Pro", sans-serif;
+    --secondary-font: "Urbanist", sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: var(--secondary-font), sans-serif;
+    font-style: normal;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--secondary-font), sans-serif;
+}
+/* Custom scrollbar for a cleaner look */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #1a202c; /* Darker gray for track */
+}
+::-webkit-scrollbar-thumb {
+    background: #6db3ed; /* Blue */
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #84c3f6; /* Lighter blue */
+}
+
+/* Custom animation for subtle background glow */
+@keyframes glow {
+    0% { box-shadow: 0 0 5px rgba(109, 179, 237, 0.4); }
+    50% { box-shadow: 0 0 20px rgba(109, 179, 237, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(109, 179, 237, 0.4); }
+}
+.animate-glow {
+    animation: glow 3s infinite alternate;
+}
+
+.liquid-glass {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: inset 2px 0 4px 3px rgba(0, 0, 0, 0.262), inset 2px 3px 4px 0 rgba(255, 255, 255, 0.215), inset 0 0 2px 2px rgba(255, 255, 255, 0.05);
+}
+
+/* Responsive styles for the main logo */
+.main-logo {
+    width: 90px;
+    height: 50px;
+    transition: transform 0.5s ease;
+}
+.main-logo:hover {
+    transform: scale(1.1);
+}
+.main-logo img {
+    width: 100%;
+    min-width: 90px;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.295));
+}
+
+/* Buttons */
+.rounded-button {
+    background-color: var(--blue);
+    color: var(--white);
+    padding: 10px 20px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.rounded-button:hover {
+    background-color: var(--yellow);
+    transform: scale(1.05);
+}
