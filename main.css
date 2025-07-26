@@ -75,16 +75,47 @@ body {
     animation: glow 3s infinite alternate;
 }
 
+/* Updated liquid-glass class */
 .liquid-glass {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 50px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: inset 2px 0 4px 3px rgba(0, 0, 0, 0.262), inset 2px 3px 4px 0 rgba(255, 255, 255, 0.215), inset 0 0 2px 2px rgba(255, 255, 255, 0.05);
+    box-shadow: 
+        inset 2px 0 4px 3px rgba(0, 0, 0, 0.262), 
+        inset 2px 3px 4px 0 rgba(255, 255, 255, 0.215), 
+        inset 0 0 2px 2px rgba(255, 255, 255, 0.05);
+    position: relative;
+    overflow: hidden;
+    transition: 
+        height 0.2s cubic-bezier(0.2, 0.05, 0.2, 1.7), 
+        padding 0.2s cubic-bezier(0.2, 0.05, 0.2, 1.7); 
 }
 
-/* Responsive styles for the main logo */
+/* ----- NAV BAR ----- */
+/* Container for navbar expansion */
+#nav-container {
+    min-height: 60px; /* Default height to accommodate logo and button */
+    transition: 
+        height 0.2s cubic-bezier(0.2, 0.05, 0.2, 1.7), 
+        padding 0.2s cubic-bezier(0.2, 0.05, 0.2, 3);
+}
+#nav-container.active {
+    height: auto; /* Expand to fit content */
+    padding-bottom: 1.5rem; /* More space for a natural expansion */
+}
+/* Mobile menu styling */
+#mobile-menu {
+    transition: 
+        opacity 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7), 
+        height 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7);
+}
+#nav-container.active #mobile-menu {
+    opacity: 1; /* Fade in */
+    height: auto; /* Expand to show links */
+    padding: 0.75rem 0; /* Balanced padding */
+}
 .main-logo {
     width: 90px;
     height: 50px;
@@ -100,6 +131,7 @@ body {
     object-fit: contain;
     filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.295));
 }
+/* -----END OF NAV BAR ----- */
 
 /* Buttons */
 .rounded-button {
