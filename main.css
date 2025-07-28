@@ -19,7 +19,7 @@
 }
 
 :root {
-    --big-stone-black:  #00000055;
+    --big-stone-black: #00000055;
     --frost-white: #f7faf6;
     --aqua-island-light-blue: #a8dadc;
     --wedgewood-blue: #457b9d;
@@ -50,19 +50,20 @@ html {
 body {
     font-family: var(--secondary-font), sans-serif;
 }
+
 /* Custom scrollbar for a cleaner look */
 ::-webkit-scrollbar {
     width: 8px;
 }
 ::-webkit-scrollbar-track {
-    background: #1a202c; /* Darker gray for track */
+    background: #1a202c;
 }
 ::-webkit-scrollbar-thumb {
-    background: #6db3ed; /* Blue */
+    background: #6db3ed;
     border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: #84c3f6; /* Lighter blue */
+    background: #84c3f6;
 }
 
 /* Custom animation for subtle background glow */
@@ -75,25 +76,19 @@ body {
     animation: glow 3s infinite alternate;
 }
 
-/* Updated liquid-glass class */
+/* Liquid-glass class */
 .liquid-glass {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 50px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: 
-        inset 2px 0 4px 3px rgba(0, 0, 0, 0.262), 
-        inset 2px 3px 4px 0 rgba(255, 255, 255, 0.215), 
-        inset 0 0 2px 2px rgba(255, 255, 255, 0.05);
+    box-shadow: inset 2px 0 4px 3px rgba(0, 0, 0, 0.262), inset 2px 3px 4px 0 rgba(255, 255, 255, 0.215), inset 0 0 2px 2px rgba(255, 255, 255, 0.05);
     position: relative;
     overflow: hidden;
-    transition: 
-        height 0.2s cubic-bezier(0.2, 0.05, 0.2, 1.7), 
-        padding 0.2s cubic-bezier(0.2, 0.05, 0.2, 1.7); 
+    transition: height 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7), padding 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7);
 }
 
-/* ----- NAV BAR ----- */
 /* Container for navbar expansion */
 #nav-container {
     min-height: 60px; /* Default height to accommodate logo and button */
@@ -102,20 +97,20 @@ body {
         padding 0.2s cubic-bezier(0.2, 0.05, 0.2, 3);
 }
 #nav-container.active {
-    height: auto; /* Expand to fit content */
-    padding-bottom: 1.5rem; /* More space for a natural expansion */
+    height: auto;
+    padding-bottom: 1.5rem;
 }
+
 /* Mobile menu styling */
 #mobile-menu {
-    transition: 
-        opacity 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7), 
-        height 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7);
+    transition: opacity 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7), height 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7);
 }
 #nav-container.active #mobile-menu {
-    opacity: 1; /* Fade in */
-    height: auto; /* Expand to show links */
-    padding: 0.75rem 0; /* Balanced padding */
+    opacity: 1;
+    height: auto;
+    padding: 0.75rem 0;
 }
+
 .main-logo {
     width: 90px;
     height: 50px;
@@ -131,7 +126,6 @@ body {
     object-fit: contain;
     filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.295));
 }
-/* -----END OF NAV BAR ----- */
 
 /* Buttons */
 .rounded-button {
@@ -146,4 +140,22 @@ body {
 .rounded-button:hover {
     background-color: var(--yellow);
     transform: scale(1.05);
+}
+
+/* Hero section adjustments for WebGL background */
+#home {
+    position: relative;
+    background: transparent;
+}
+#hero-background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+#home .container {
+    position: relative;
+    z-index: 10;
 }
