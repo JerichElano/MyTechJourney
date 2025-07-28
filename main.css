@@ -66,16 +66,6 @@ body {
     background: #84c3f6;
 }
 
-/* Custom animation for subtle background glow */
-@keyframes glow {
-    0% { box-shadow: 0 0 5px rgba(109, 179, 237, 0.4); }
-    50% { box-shadow: 0 0 20px rgba(109, 179, 237, 0.8); }
-    100% { box-shadow: 0 0 5px rgba(109, 179, 237, 0.4); }
-}
-.animate-glow {
-    animation: glow 3s infinite alternate;
-}
-
 /* Liquid-glass class */
 .liquid-glass {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
@@ -83,48 +73,15 @@ body {
     -webkit-backdrop-filter: blur(10px);
     border-radius: 50px;
     border: 1px solid rgba(255, 255, 255, 0.18);
-    box-shadow: inset 2px 0 4px 3px rgba(0, 0, 0, 0.262), inset 2px 3px 4px 0 rgba(255, 255, 255, 0.215), inset 0 0 2px 2px rgba(255, 255, 255, 0.05);
+    box-shadow: 
+        inset 2px 0 4px 3px rgba(0, 0, 0, 0.28), 
+        inset 2px 3px 4px 0 rgba(255, 255, 255, 0.529), 
+        inset 0 0 2px 2px rgba(180, 180, 180, 0.337);
     position: relative;
     overflow: hidden;
-    transition: height 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7), padding 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7);
-}
-
-/* Container for navbar expansion */
-#nav-container {
-    min-height: 60px; /* Default height to accommodate logo and button */
     transition: 
-        height 0.2s cubic-bezier(0.2, 0.05, 0.2, 1.7), 
-        padding 0.2s cubic-bezier(0.2, 0.05, 0.2, 3);
-}
-#nav-container.active {
-    height: auto;
-    padding-bottom: 1.5rem;
-}
-
-/* Mobile menu styling */
-#mobile-menu {
-    transition: opacity 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7), height 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7);
-}
-#nav-container.active #mobile-menu {
-    opacity: 1;
-    height: auto;
-    padding: 0.75rem 0;
-}
-
-.main-logo {
-    width: 90px;
-    height: 50px;
-    transition: transform 0.5s ease;
-}
-.main-logo:hover {
-    transform: scale(1.1);
-}
-.main-logo img {
-    width: 100%;
-    min-width: 90px;
-    height: 100%;
-    object-fit: contain;
-    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.295));
+        height 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7), 
+        padding 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7);
 }
 
 /* Buttons */
@@ -137,16 +94,77 @@ body {
     font-weight: 600;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
+
 .rounded-button:hover {
     background-color: var(--yellow);
     transform: scale(1.05);
 }
 
-/* Hero section adjustments for WebGL background */
+/* ----- NAV BAR ----- */
+#nav-container {
+    min-height: 60px;
+    transition: 
+        height 0.2s cubic-bezier(0.2, 0.05, 0.2, 1.7), 
+        padding 0.2s cubic-bezier(0.2, 0.05, 0.2, 3);
+}
+
+#nav-container.active {
+    height: auto;
+    padding-bottom: 1.5rem;
+}
+
+#mobile-menu {
+    transition: opacity 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7), height 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7);
+}
+
+#mobile-menu-button .fa-times {
+    transition: all 0.5s ease;
+}
+
+#nav-container.active #mobile-menu {
+    opacity: 1;
+    height: auto;
+    padding: 0.75rem 0;
+}
+
+.main-logo {
+    width: 90px;
+    height: 50px;
+    transition: transform 0.5s ease;
+}
+
+.main-logo:hover {
+    transform: scale(1.1);
+}
+
+.main-logo img {
+    width: 100%;
+    min-width: 90px;
+    height: 100%;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.504));
+}
+
+nav .links a {
+    color: var(--white);
+    transition: transform 0.5s ease;    
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.505));
+    font-weight: 600;
+    font-size: 17px;
+}
+
+nav .links a:hover {
+    /* color: var(--aqua-island-light-blue); */
+    transform: scale(1.1);
+}
+/* ----- End of nav bar ----- */
+
+/* ----- HERO SECTION ----- */
 #home {
     position: relative;
     background: transparent;
 }
+
 #hero-background {
     position: absolute;
     top: 0;
@@ -155,6 +173,7 @@ body {
     height: 100%;
     z-index: 0;
 }
+
 #home .container {
     position: relative;
     z-index: 10;

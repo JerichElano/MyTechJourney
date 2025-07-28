@@ -13,7 +13,7 @@
 <body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col">
 
     <!-- NAV BAR -->
-    <nav class="px-5 py-3 sticky top-0 z-50">
+    <nav class="fixed px-5 py-3 top-0 left-0 right-0 z-50">
         <div class="max-w-7xl py-2 px-8 mx-auto flex flex-col md:flex-row justify-between items-center liquid-glass relative transition-all duration-300 ease-in-out" id="nav-container">
             <div class="flex items-center justify-between w-full md:w-auto">
                 <a href="#home" class="transition duration-300 ease-in-out main-logo">
@@ -27,23 +27,24 @@
             </div>
 
             <!-- Desktop Navigation -->
-            <div class="hidden md:flex space-x-8">
-                <a href="#projects" class="text-var(--white) hover:text-[var(--blue)] transition duration-300 ease-in-out px-3 py-2 rounded-md">Projects</a>
-                <a href="#tools" class="text-var(--white) hover:text-[var(--blue)] transition duration-300 ease-in-out px-3 py-2 rounded-md">Tools</a>
-                <a href="#experience" class="text-var(--white) hover:text-[var(--blue)] transition duration-300 ease-in-out px-3 py-2 rounded-md">Experience</a>
-                <a href="#contact" class="text-var(--white) hover:text-[var(--blue)] transition duration-300 ease-in-out px-3 py-2 rounded-md">Let's work together!</a>
+            <div class="hidden md:flex space-x-8 transition-all duration-300 ease-in-out links">
+                <a href="#projects" class="px-3 py-2 rounded-md">Projects</a>
+                <a href="#tools" class="px-3 py-2 rounded-md">Tools</a>
+                <a href="#experience" class="px-3 py-2 rounded-md">Experience</a>
+                <a href="#contact" class="px-3 py-2 rounded-md">Let's work together!</a>
             </div>
 
             <!-- Mobile Menu Links (Hidden by default) -->
-            <div id="mobile-menu" class="flex flex-col space-y-2 md:hidden opacity-0 h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                <a href="#projects" class="text-var(--white) hover:text-[var(--blue)] transition duration-300 ease-in-out px-3 py-2 rounded-md">Projects</a>
-                <a href="#tools" class="block text-var(--white) hover:text-[var(--blue)] transition duration-300 ease-in-out px-3 py-2 rounded-md">Tools</a>
-                <a href="#experience" class="block text-var(--white) hover:text-[var(--blue)] transition duration-300 ease-in-out px-3 py-2 rounded-md">Experience</a>
-                <a href="#contact" class="block text-var(--white) hover:text-[var(--blue)] transition duration-300 ease-in-out px-3 py-2 rounded-md">Let's work together!</a>
+            <div id="mobile-menu" class="flex flex-col space-y-2 md:hidden opacity-0 h-0 overflow-hidden transition-all duration-300 ease-in-out links">
+                <a href="#projects" class="px-3 py-2 rounded-md">Projects</a>
+                <a href="#tools" class="block px-3 py-2 rounded-md">Tools</a>
+                <a href="#experience" class="block px-3 py-2 rounded-md">Experience</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md">Let's work together!</a>
             </div>
         </div>
     </nav>
-    <!-- Main Content Area -->
+
+    <!-- MAIN CONTENT -->
     <main class="flex-grow">
 
         <!-- HERO SECTION -->
@@ -338,9 +339,18 @@
         // Mobile menu toggle functionality
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const navContainer = document.getElementById('nav-container');
+        const menuIcon = mobileMenuButton.querySelector('i');
 
         mobileMenuButton.addEventListener('click', () => {
             navContainer.classList.toggle('active');
+            // Toggle the icon between fa-bars and fa-times
+            if (navContainer.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
         });
 
         // Close mobile menu when a link is clicked
@@ -348,6 +358,8 @@
         mobileMenuLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navContainer.classList.remove('active');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
             });
         });
 
