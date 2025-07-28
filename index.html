@@ -13,7 +13,7 @@
 <body class="bg-gray-900 text-gray-100 min-h-screen flex flex-col">
 
     <!-- NAV BAR -->
-    <nav class="px-5 py-3 sticky top-0 z-50">
+    <nav class="fixed px-5 py-3 top-0 left-0 right-0 z-50">
         <div class="max-w-7xl py-2 px-8 mx-auto flex flex-col md:flex-row justify-between items-center liquid-glass relative transition-all duration-300 ease-in-out" id="nav-container">
             <div class="flex items-center justify-between w-full md:w-auto">
                 <a href="#home" class="transition duration-300 ease-in-out main-logo">
@@ -27,49 +27,45 @@
             </div>
 
             <!-- Desktop Navigation -->
-            <div class="hidden md:flex space-x-8">
-                <a href="#projects" class="text-var(--white) hover:text-[var(--blue)] transition duration-300 ease-in-out px-3 py-2 rounded-md">Projects</a>
-                <a href="#tools" class="text-var(--white) hover:text-[var(--blue)] transition duration-300 ease-in-out px-3 py-2 rounded-md">Tools</a>
-                <a href="#experience" class="text-var(--white) hover:text-[var(--blue)] transition duration-300 ease-in-out px-3 py-2 rounded-md">Experience</a>
-                <a href="#contact" class="text-var(--white) hover:text-[var(--blue)] transition duration-300 ease-in-out px-3 py-2 rounded-md">Let's work together!</a>
+            <div class="hidden md:flex space-x-8 transition-all duration-300 ease-in-out links">
+                <a href="#projects" class="px-3 py-2 rounded-md">Projects</a>
+                <a href="#tools" class="px-3 py-2 rounded-md">Tools</a>
+                <a href="#experience" class="px-3 py-2 rounded-md">Experience</a>
+                <a href="#contact" class="px-3 py-2 rounded-md">Let's work together!</a>
             </div>
 
             <!-- Mobile Menu Links (Hidden by default) -->
-            <div id="mobile-menu" class="flex flex-col space-y-2 md:hidden opacity-0 h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                <a href="#projects" class="text-var(--white) hover:text-[var(--blue)] transition duration-300 ease-in-out px-3 py-2 rounded-md">Projects</a>
-                <a href="#tools" class="block text-var(--white) hover:text-[var(--blue)] transition duration-300 ease-in-out px-3 py-2 rounded-md">Tools</a>
-                <a href="#experience" class="block text-var(--white) hover:text-[var(--blue)] transition duration-300 ease-in-out px-3 py-2 rounded-md">Experience</a>
-                <a href="#contact" class="block text-var(--white) hover:text-[var(--blue)] transition duration-300 ease-in-out px-3 py-2 rounded-md">Let's work together!</a>
+            <div id="mobile-menu" class="flex flex-col space-y-2 md:hidden opacity-0 h-0 overflow-hidden transition-all duration-300 ease-in-out links">
+                <a href="#projects" class="px-3 py-2 rounded-md">Projects</a>
+                <a href="#tools" class="block px-3 py-2 rounded-md">Tools</a>
+                <a href="#experience" class="block px-3 py-2 rounded-md">Experience</a>
+                <a href="#contact" class="block px-3 py-2 rounded-md">Let's work together!</a>
             </div>
         </div>
     </nav>
-    <!-- Main Content Area -->
+
+    <!-- MAIN CONTENT -->
     <main class="flex-grow">
 
         <!-- HERO SECTION -->
-        <section id="home" class="relative bg-gradient-to-br from-gray-900 to-gray-800 text-white py-20 md:py-32 flex items-center justify-center min-h-screen rounded-b-lg shadow-xl overflow-hidden">
-            <!-- Subtle background elements for visual interest -->
-            <div class="absolute inset-0 z-0 opacity-10">
-            <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
-            <div class="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
-            <div class="absolute top-1/2 left-1/2 w-72 h-72 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
-            </div>
+        <section id="home" class="relative bg-transparent py-20 md:py-32 flex items-center justify-center min-h-screen rounded-b-lg shadow-xl overflow-hidden">
+            <canvas id="hero-background"></canvas>
             <div class="container mx-auto px-6 text-center relative z-10">
-            <div class="flex flex-col items-center justify-center">
-                <h1 class="text-4xl md:text-7xl font-extrabold leading-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[var(--blue)] to-blue-400 animate-fade-in-down">
-                We Build Digital Experiences.
-                </h1>
-                <p class="text-xl md:text-3xl text-gray-300 mb-10 animate-fade-in-up max-w-3xl">
-                Crafting innovative web solutions that captivate audiences and drive results.
-                </p>
-                <!-- Added person image -->
-                <div class="relative w-64 h-64 mb-10">
-                <img src="assets/photos/half_body_1.png" alt="Profile" class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-full">
+                <div class="flex flex-col items-center justify-center">
+                    <h1 class="text-4xl md:text-7xl font-extrabold leading-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-[var(--blue)] to-blue-400 animate-fade-in-down">
+                        We Build Digital Experiences.
+                    </h1>
+                    <p class="text-xl md:text-3xl text-gray-300 mb-10 animate-fade-in-up max-w-3xl">
+                        Crafting innovative web solutions that captivate audiences and drive results.
+                    </p>
+                    <!-- Added person image -->
+                    <div class="relative w-64 h-64 mb-10">
+                        <img src="assets/photos/half_body_1.png" alt="Profile" class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-full">
+                    </div>
+                    <a href="#projects" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-75 animate-glow">
+                        See Our Work <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
-                <a href="#projects" class="inline-block bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 px-8 rounded-full shadow-lg transform hover:scale-105 transition duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-75 animate-glow">
-                See Our Work <i class="fas fa-arrow-right ml-2"></i>
-                </a>
-            </div>
             </div>
         </section>
 
@@ -334,30 +330,44 @@
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    
     <script>
         // Dynamically set the current year for the copyright notice
-            document.getElementById('current-year').textContent = new Date().getFullYear();
+        document.getElementById('current-year').textContent = new Date().getFullYear();
 
-            // Mobile menu toggle functionality
-            const mobileMenuButton = document.getElementById('mobile-menu-button');
-            const navContainer = document.getElementById('nav-container');
+        // Mobile menu toggle functionality
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const navContainer = document.getElementById('nav-container');
+        const menuIcon = mobileMenuButton.querySelector('i');
 
-            mobileMenuButton.addEventListener('click', () => {
-                navContainer.classList.toggle('active');
+        mobileMenuButton.addEventListener('click', () => {
+            navContainer.classList.toggle('active');
+            // Toggle the icon between fa-bars and fa-times
+            if (navContainer.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        // Close mobile menu when a link is clicked
+        const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
+        mobileMenuLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                navContainer.classList.remove('active');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
             });
+        });
 
-            // Close mobile menu when a link is clicked
-            const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
-            mobileMenuLinks.forEach(link => {
-                link.addEventListener('click', () => {
-                    navContainer.classList.remove('active');
-                });
-            });
         // Gemini API integration for generating summary in the footer
         document.getElementById('generate-summary-btn').addEventListener('click', async () => {
             const summaryElement = document.getElementById('about-us-summary');
-            const originalSummary = summaryElement.textContent; // Store original content
-            summaryElement.textContent = 'Generating summary...'; // Loading indicator
+            const originalSummary = summaryElement.textContent;
+            summaryElement.textContent = 'Generating summary...';
 
             try {
                 let chatHistory = [];
@@ -382,14 +392,82 @@
                     const generatedText = result.candidates[0].content.parts[0].text;
                     summaryElement.textContent = generatedText;
                 } else {
-                    summaryElement.textContent = originalSummary; // Revert on error
+                    summaryElement.textContent = originalSummary;
                     console.error('Gemini API response structure unexpected:', result);
                 }
             } catch (error) {
-                summaryElement.textContent = originalSummary; // Revert on error
+                summaryElement.textContent = originalSummary;
                 console.error('Error calling Gemini API:', error);
             }
         });
+
+        // WebGL Background for Hero Section using god_rays.json
+        let scene, camera, renderer, uniforms;
+        async function initBackground() {
+            const container = document.getElementById('hero-background');
+            container.style.position = 'absolute';
+            container.style.top = '0';
+            container.style.left = '0';
+            container.style.width = '100%';
+            container.style.height = '100%';
+            container.style.zIndex = '0';
+
+            // Load the god_rays.json file
+            const response = await fetch('/assets/json/god_rays.json');
+            const shaderData = await response.json();
+
+            scene = new THREE.Scene();
+            camera = new THREE.OrthographicCamera(window.innerWidth / -2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / -2, 1, 1000);
+            camera.position.z = 1;
+
+            renderer = new THREE.WebGLRenderer({ canvas: container, alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+
+            const geometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight);
+            uniforms = {
+                u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
+                u_mouse: { value: new THREE.Vector2() },
+                u_time: { value: 0 },
+                u_colors: { value: [
+                    new THREE.Vector4(...shaderData.uniforms.u_colors[0]),
+                    new THREE.Vector4(...shaderData.uniforms.u_colors[1])
+                ] },
+                u_intensity: { value: shaderData.uniforms.u_intensity },
+                u_rays: { value: shaderData.uniforms.u_rays },
+                u_reach: { value: shaderData.uniforms.u_reach }
+            };
+
+            const material = new THREE.ShaderMaterial({
+                vertexShader: shaderData.vertexShader,
+                fragmentShader: shaderData.fragmentShader,
+                uniforms: uniforms,
+                transparent: true
+            });
+
+            const plane = new THREE.Mesh(geometry, material);
+            scene.add(plane);
+
+            animate();
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            if (uniforms) uniforms.u_time.value += 0.05;
+            if (renderer) renderer.render(scene, camera);
+        }
+
+        function onWindowResize() {
+            camera.left = window.innerWidth / -2;
+            camera.right = window.innerWidth / 2;
+            camera.top = window.innerHeight / 2;
+            camera.bottom = window.innerHeight / -2;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            if (uniforms) uniforms.u_resolution.value.set(window.innerWidth, window.innerHeight);
+        }
+
+        window.addEventListener('resize', onWindowResize);
+        initBackground().catch(error => console.error('Error initializing background:', error));
     </script>
 </body>
 </html>
