@@ -1,22 +1,5 @@
-/* Import Google Fonts for Poppins and Urbanist */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200..700&family=Urbanist:wght@200..700&display=swap');
-
-/* Define custom fonts (if self-hosted) */
-@font-face {
-    font-family: 'Telegraf';
-    src: url('/fonts/telegraf-regular.woff2') format('woff2'),
-         url('/fonts/telegraf-regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'SF Pro';
-    src: url('/fonts/sf-pro-regular.woff2') format('woff2'),
-         url('/fonts/sf-pro-regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
+/* Import Google Fonts for Unbounded and Geist */
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Unbounded:wght@200..900&display=swap');
 
 :root {
     --big-stone-black: #00000055;
@@ -28,27 +11,35 @@
     --red: #f05e4d;
     --yellow: #fec126;
     --white: #ffffff;
-    --accent: #2c2d32;
     --black: #000000;
+    --accent1: #2c2d32;
+    --accent2: #3B586F;
 
-    --main-font: "SF Pro", sans-serif;
-    --secondary-font: "Urbanist", sans-serif;
+    --main-font: "Geist", sans-serif;
+    --secondary-font: "Unbounded", sans-serif;
+}
+
+::selection {
+    color: var(--white);
+    background: var(--blue);
+}
+
+::-moz-selection {
+    color: var(--white);
+    background: var(--blue);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: var(--secondary-font), sans-serif;
+    font-family: var(--main-font), sans-serif;
     font-style: normal;
+    font-weight: 100;
 }
 
 html {
     scroll-behavior: smooth;
-}
-
-body {
-    font-family: var(--secondary-font), sans-serif;
 }
 
 /* Custom scrollbar for a cleaner look */
@@ -86,18 +77,30 @@ body {
 
 /* Buttons */
 .rounded-button {
-    background-color: var(--blue);
+    width: fit-content;
     color: var(--white);
     padding: 10px 20px;
     border-radius: 30px;
     font-size: 16px;
-    font-weight: 600;
-    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: 600;    
+    text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
+    background: linear-gradient(135deg, rgb(109, 179, 237), rgb(109, 154, 237));
+    border-radius: 50px;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    box-shadow: 
+        inset 2px 0 4px 3px rgba(255, 255, 255, 0.28), 
+        inset 2px 3px 4px 0 rgba(255, 255, 255, 0.529), 
+        inset 0 0 2px 2px rgba(23, 23, 23, 0.337);
+    position: relative;
+    overflow: hidden;
+    transition: 
+        height 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7), 
+        padding 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7),
+        transform 0.5s ease;
 }
 
 .rounded-button:hover {
-    background-color: var(--yellow);
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 /* ----- NAV BAR ----- */
@@ -114,7 +117,9 @@ body {
 }
 
 #mobile-menu {
-    transition: opacity 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7), height 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7);
+    transition: 
+        opacity 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7), 
+        height 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7);
 }
 
 #mobile-menu-button .fa-times {
@@ -142,13 +147,13 @@ body {
     min-width: 90px;
     height: 100%;
     object-fit: contain;
-    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.504));
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
 }
 
 nav .links a {
     color: var(--white);
     transition: transform 0.5s ease;    
-    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.505));
+    filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
     font-weight: 600;
     font-size: 17px;
 }
@@ -178,3 +183,123 @@ nav .links a:hover {
     position: relative;
     z-index: 10;
 }
+
+.masked-dots {
+    background-image: radial-gradient(#ffffff95 2px, transparent 1px); background-size: 20px 20px;
+    mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 70%); /* For Safari */
+}
+
+h1 {
+    font-family: var(--secondary-font), sans-serif;
+}
+/* ----- End of hero section ----- */
+
+/* ----- ABOUT SECTION ----- */
+section {
+    background-color: var(--accent2);
+}
+
+.about-cards {
+    font-size: small;
+}
+/* ----- End of about section */
+
+/* ----- PROJECTS ----- */
+.carousel-container {
+    max-width: 1200px;
+    width: 100%;
+    border-radius: 1.5rem;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    background-color: #ffffff;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+.carousel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+}
+.carousel-wrapper {
+    overflow: hidden;
+    border-radius: 1rem;
+}
+.carousel-slides {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.carousel-slide {
+    flex: 0 0 calc(100% / 3);
+    box-sizing: border-box;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    cursor: pointer;
+}
+.image-aspect-ratio {
+    width: 100%;
+    padding-bottom: 125%;
+    position: relative;
+    border-radius: 0.75rem;
+    overflow: hidden;
+}
+.image-aspect-ratio img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: filter 0.5s ease-in-out;
+}
+.carousel-slide.is-grayscale .image-aspect-ratio img {
+    filter: grayscale(100%);
+}
+.carousel-slide.is-active .image-aspect-ratio img {
+    filter: grayscale(0%);
+}
+.carousel-button {
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 0.5rem 0.75rem;
+    cursor: pointer;
+    border-radius: 9999px;
+    transition: background-color 0.3s ease;
+    font-size: 1.25rem;
+    line-height: 1;
+}
+.carousel-button:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.carousel-button:disabled {
+    background-color: rgba(0, 0, 0, 0.2);
+    cursor: not-allowed;
+}
+@media (max-width: 767px) {
+    .carousel-slide {
+        flex: 0 0 100%;
+    }
+    .carousel-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .carousel-header h2 {
+        margin-bottom: 1rem;
+    }
+    .carousel-buttons {
+        width: 100%;
+        justify-content: center;
+    }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+    .carousel-slide {
+        flex: 0 0 calc(100% / 2);
+    }
+}
+/* ----- End of projects ----- */
