@@ -194,3 +194,10 @@ nav .links a:hover {
     position: relative;
     z-index: 10;
 }
+
+.masked-dots {
+    background-image: radial-gradient(#ffffff95 2px, transparent 1px); background-size: 20px 20px;
+    mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 70%);
+    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 70%); /* For Safari */
+}
+
