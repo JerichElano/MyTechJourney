@@ -1,22 +1,5 @@
-/* Import Google Fonts for Poppins and Urbanist */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200..700&family=Urbanist:wght@200..700&display=swap');
-
-/* Define custom fonts (if self-hosted) */
-@font-face {
-    font-family: 'Telegraf';
-    src: url('/fonts/telegraf-regular.woff2') format('woff2'),
-         url('/fonts/telegraf-regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'SF Pro';
-    src: url('/fonts/sf-pro-regular.woff2') format('woff2'),
-         url('/fonts/sf-pro-regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-}
+/* Import Google Fonts for Unbounded and Geist */
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Unbounded:wght@200..900&display=swap');
 
 :root {
     --big-stone-black: #00000055;
@@ -28,27 +11,35 @@
     --red: #f05e4d;
     --yellow: #fec126;
     --white: #ffffff;
-    --accent: #2c2d32;
     --black: #000000;
+    --accent1: #2c2d32;
+    --accent2: #3B586F;
 
-    --main-font: "SF Pro", sans-serif;
-    --secondary-font: "Urbanist", sans-serif;
+    --main-font: "Geist", sans-serif;
+    --secondary-font: "Unbounded", sans-serif;
+}
+
+::selection {
+    color: var(--white);
+    background: var(--blue);
+}
+
+::-moz-selection {
+    color: var(--white);
+    background: var(--blue);
 }
 
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: var(--secondary-font), sans-serif;
+    font-family: var(--main-font), sans-serif;
     font-style: normal;
+    font-weight: 100;
 }
 
 html {
     scroll-behavior: smooth;
-}
-
-body {
-    font-family: var(--secondary-font), sans-serif;
 }
 
 /* Custom scrollbar for a cleaner look */
@@ -199,3 +190,16 @@ nav .links a:hover {
     -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 70%); /* For Safari */
 }
 
+h1 {
+    font-family: var(--secondary-font), sans-serif;
+}
+/* ----- End of hero section ----- */
+
+/* ----- ABOUT SECTION ----- */
+section {
+    background-color: var(--accent2);
+}
+
+.about-cards {
+    font-size: small;
+}
