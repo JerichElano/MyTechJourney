@@ -66,7 +66,7 @@
         </section>
 
         <!-- ABOUT SECTION -->
-        <section id="about" class="py-16 md:py-24 bg-gray-800 rounded-lg shadow-xl mx-5 lg:mx-auto  max-w-7xl mt-8 px-6">
+        <section id="about" class="py-16 md:py-24 bg-gray-800 rounded-lg shadow-xl mx-5 lg:mx-auto max-w-7xl mt-8 px-6">
             <div class="container mx-auto text-left">
                 <div class="max-w-3xl mx-auto text-sm text-gray-300 space-y-6">
                 <h2 class="text-4xl font-bold text-[var(--white)] mb-8">About</h2>
@@ -105,48 +105,45 @@
             </div>
         </section>
 
-        <!-- Projects Section -->
+        <!-- CAROUSEL SECTION -->
         <section id="projects" class="py-16 md:py-24 bg-gray-900 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
-            <div class="container mx-auto text-center">
-                <h2 class="text-4xl font-bold text-[var(--white)] mb-12">Our Latest Projects</h2>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <!-- Project Card 1 -->
-                    <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out border border-gray-700">
-                        <img src="https://placehold.co/600x400/8B5CF6/FFFFFF?text=Project+Alpha" alt="Project Alpha" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold text-purple-300 mb-2">E-commerce Platform</h3>
-                            <p class="text-gray-400 mb-4">A robust e-commerce solution with intuitive UX and scalable architecture for a fashion brand.</p>
-                            <div class="flex justify-center space-x-4">
-                                <a href="#" target="_blank" rel="noopener noreferrer" class="text-[var(--white)] hover:text-purple-300 transition duration-300 ease-in-out">
-                                    <i class="fas fa-external-link-alt mr-1"></i> View Case Study
-                                </a>
-                            </div>
+            <div class="carousel-header">
+                <h2 class="text-4xl font-bold text-[var(--white)] mb-12">Projects</h2>
+                <div class="carousel-buttons flex space-x-4">
+                    <button class="carousel-button prev" id="prevBtn">&#10094;</button>
+                    <button class="carousel-button next" id="nextBtn">&#10095;</button>
+                </div>
+            </div>
+            <div class="carousel-wrapper" id="carouselWrapper">
+                <div class="carousel-slides" id="carouselSlides">
+                    <!-- Slide 1 -->
+                    <div class="carousel-slide" data-original-index="0">
+                        <div class="image-aspect-ratio">
+                            <img src="/assets/photos/projects/Talklas.png" alt="Talklas">
                         </div>
                     </div>
-                    <!-- Project Card 2 -->
-                    <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out border border-gray-700">
-                        <img src="https://placehold.co/600x400/A78BFA/FFFFFF?text=Project+Beta" alt="Project Beta" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold text-purple-300 mb-2">Interactive Dashboard</h3>
-                            <p class="text-gray-400 mb-4">Data visualization dashboard for real-time analytics, enhancing business intelligence.</p>
-                            <div class="flex justify-center space-x-4">
-                                <a href="#" target="_blank" rel="noopener noreferrer" class="text-[var(--white)] hover:text-purple-300 transition duration-300 ease-in-out">
-                                    <i class="fas fa-external-link-alt mr-1"></i> View Case Study
-                                </a>
-                            </div>
+                    <!-- Slide 2 -->
+                    <div class="carousel-slide" data-original-index="1">
+                        <div class="image-aspect-ratio">
+                            <img src="/assets/photos/projects/Nexus.png" alt="Ordering System">
                         </div>
                     </div>
-                    <!-- Project Card 3 -->
-                    <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition duration-300 ease-in-out border border-gray-700">
-                        <img src="https://placehold.co/600x400/D8B4FE/FFFFFF?text=Project+Gamma" alt="Project Gamma" class="w-full h-48 object-cover">
-                        <div class="p-6">
-                            <h3 class="text-2xl font-semibold text-purple-300 mb-2">Mobile-First Blog</h3>
-                            <p class="text-gray-400 mb-4">A highly optimized blog platform designed for exceptional performance on mobile devices.</p>
-                            <div class="flex justify-center space-x-4">
-                                <a href="#" target="_blank" rel="noopener noreferrer" class="text-[var(--white)] hover:text-purple-300 transition duration-300 ease-in-out">
-                                    <i class="fas fa-external-link-alt mr-1"></i> View Case Study
-                                </a>
-                            </div>
+                    <!-- Slide 3 -->
+                    <div class="carousel-slide" data-original-index="2">
+                        <div class="image-aspect-ratio">
+                            <img src="/assets/photos/projects/Smart Trash Bin.png" alt="Smart Trash Bin">
+                        </div>
+                    </div>
+                    <!-- Slide 4 -->
+                    <div class="carousel-slide" data-original-index="3">
+                        <div class="image-aspect-ratio">
+                            <img src="/assets/photos/projects/Aluminus.png" alt="Aluminus Protagonist">
+                        </div>
+                    </div>
+                    <!-- Slide 5 -->
+                    <div class="carousel-slide" data-original-index="4">
+                        <div class="image-aspect-ratio">
+                            <img src="/assets/photos/projects/3D Digital Trainer.png" alt="3D Digital Trainer">
                         </div>
                     </div>
                 </div>
@@ -556,6 +553,129 @@
                     sectionCenterY = sectionRect.top + sectionRect.height / 2;
                 });
             }
+        });
+
+        // --- Carousel Functionality ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const carouselSlidesContainer = document.getElementById('carouselSlides');
+            const carouselWrapper = document.getElementById('carouselWrapper');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const originalSlides = Array.from(carouselSlidesContainer.children);
+            const totalOriginalSlides = originalSlides.length;
+            let currentIndex = 0;
+            let slidesPerPage = 3;
+            const transitionDuration = 500;
+
+            const updateSlidesPerPage = () => {
+                if (window.innerWidth < 768) {
+                    slidesPerPage = 1;
+                } else if (window.innerWidth >= 768 && window.innerWidth < 1024) {
+                    slidesPerPage = 2;
+                } else {
+                    slidesPerPage = 3;
+                }
+                cloneSlides();
+                currentIndex = slidesPerPage;
+                updateCarousel(true);
+            };
+
+            const cloneSlides = () => {
+                const existingClones = carouselSlidesContainer.querySelectorAll('.cloned');
+                existingClones.forEach(clone => clone.remove());
+                carouselSlidesContainer.innerHTML = '';
+                originalSlides.forEach(slide => carouselSlidesContainer.appendChild(slide));
+                const firstClones = [];
+                const lastClones = [];
+                for (let i = 0; i < slidesPerPage; i++) {
+                    const clone = originalSlides[totalOriginalSlides - 1 - i].cloneNode(true);
+                    clone.classList.add('cloned');
+                    lastClones.unshift(clone);
+                }
+                for (let i = 0; i < slidesPerPage; i++) {
+                    const clone = originalSlides[i].cloneNode(true);
+                    clone.classList.add('cloned');
+                    firstClones.push(clone);
+                }
+                lastClones.forEach(clone => carouselSlidesContainer.prepend(clone));
+                firstClones.forEach(clone => carouselSlidesContainer.append(clone));
+                attachSlideClickListeners();
+            };
+
+            const updateCarousel = (instant = false) => {
+                if (instant) {
+                    carouselSlidesContainer.style.transition = 'none';
+                } else {
+                    carouselSlidesContainer.style.transition = `transform ${transitionDuration / 1000}s ease-in-out`;
+                }
+                carouselSlidesContainer.style.transform = `translateX(-${currentIndex * (100 / slidesPerPage)}%)`;
+                carouselSlidesContainer.offsetWidth;
+                updateButtonStates();
+                updateSlideStates();
+            };
+
+            const updateButtonStates = () => {
+                const disableButtons = totalOriginalSlides <= slidesPerPage;
+                prevBtn.disabled = disableButtons;
+                nextBtn.disabled = disableButtons;
+            };
+
+            const updateSlideStates = () => {
+                const allSlides = carouselSlidesContainer.querySelectorAll('.carousel-slide');
+                const centerSlideIndexOffset = Math.floor(slidesPerPage / 2);
+                allSlides.forEach((slide, index) => {
+                    const isActiveSlide = (index === currentIndex + centerSlideIndexOffset);
+                    if (isActiveSlide) {
+                        slide.classList.add('is-active');
+                        slide.classList.remove('is-grayscale');
+                    } else {
+                        slide.classList.remove('is-active');
+                        slide.classList.add('is-grayscale');
+                    }
+                });
+            };
+
+            const goToNextSlide = () => {
+                currentIndex++;
+                updateCarousel();
+                if (currentIndex >= totalOriginalSlides + slidesPerPage) {
+                    setTimeout(() => {
+                        currentIndex = slidesPerPage;
+                        updateCarousel(true);
+                    }, transitionDuration);
+                }
+            };
+
+            const goToPrevSlide = () => {
+                currentIndex--;
+                updateCarousel();
+                if (currentIndex < slidesPerPage) {
+                    setTimeout(() => {
+                        currentIndex = totalOriginalSlides + slidesPerPage - 1;
+                        updateCarousel(true);
+                    }, transitionDuration);
+                }
+            };
+
+            const attachSlideClickListeners = () => {
+                const allSlides = carouselSlidesContainer.querySelectorAll('.carousel-slide');
+                allSlides.forEach((slide, index) => {
+                    slide.onclick = () => {
+                        const centerSlideIndexOffset = Math.floor(slidesPerPage / 2);
+                        const isActiveSlide = (index === currentIndex + centerSlideIndexOffset);
+                        if (isActiveSlide) {
+                        } else if (index < currentIndex + centerSlideIndexOffset) {
+                            goToPrevSlide();
+                        } else if (index > currentIndex + centerSlideIndexOffset) {
+                            goToNextSlide();
+                        }
+                    };
+                });
+            };
+
+            nextBtn.addEventListener('click', () => goToNextSlide());
+            prevBtn.addEventListener('click', () => goToPrevSlide());
+            updateSlidesPerPage();
         });
     </script>
 </body>
