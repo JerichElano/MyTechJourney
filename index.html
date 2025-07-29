@@ -57,9 +57,10 @@
                 Innovative Tech Enthusiast
             </h1>
 
-            <img src="assets/photos/Main.png" alt="Profile" class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-[calc(100vh * 0.90)] max-h-[40rem] w-auto object-cover z-20">
+            <img id="main-person-image" src="assets/photos/Main.png" alt="Profile"
+                 class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-[calc(100vh * 0.45)] max-h-[40rem] w-auto object-cover z-10 transition-transform duration-1000 ease-out">
 
-            <a href="#projects" class="inline-block rounded-button shadow-effect absolute bottom-8 md:bottom-12 z-30">
+            <a href="#projects" class="inline-block rounded-button shadow-effect absolute bottom-[3rem] md:bottom-12 transform translate-y-1/2 z-30">
                 Hire me! <i class="fas fa-arrow-right ml-2"></i>
             </a>
         </section>
@@ -334,10 +335,16 @@
         // Mobile menu toggle functionality
         const mobileMenuButton = document.getElementById('mobile-menu-button');
         const navContainer = document.getElementById('nav-container');
+        const mobileMenu = document.getElementById('mobile-menu'); // Get mobile menu element
         const menuIcon = mobileMenuButton.querySelector('i');
 
         mobileMenuButton.addEventListener('click', () => {
             navContainer.classList.toggle('active');
+            // Toggle visibility for mobile menu
+            mobileMenu.classList.toggle('opacity-0');
+            mobileMenu.classList.toggle('h-0');
+            mobileMenu.classList.toggle('h-auto'); // Adjust height dynamically
+
             // Toggle the icon between fa-bars and fa-times
             if (navContainer.classList.contains('active')) {
                 menuIcon.classList.remove('fa-bars');
@@ -353,6 +360,9 @@
         mobileMenuLinks.forEach(link => {
             link.addEventListener('click', () => {
                 navContainer.classList.remove('active');
+                mobileMenu.classList.add('opacity-0');
+                mobileMenu.classList.add('h-0');
+                mobileMenu.classList.remove('h-auto');
                 menuIcon.classList.remove('fa-times');
                 menuIcon.classList.add('fa-bars');
             });
@@ -463,6 +473,68 @@
 
         window.addEventListener('resize', onWindowResize);
         initBackground().catch(error => console.error('Error initializing background:', error));
+
+
+        // --- Parallax Effect for Main.png Image ---
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroSection = document.getElementById('home');
+            const mainPersonImage = document.getElementById('main-person-image');
+
+            if (heroSection && mainPersonImage) {
+                let sectionRect = heroSection.getBoundingClientRect(); // Get section dimensions
+                let sectionCenterX = sectionRect.left + sectionRect.width / 2;
+                let sectionCenterY = sectionRect.top + sectionRect.height / 2;
+
+                let animationFrameRequested = false;
+
+                heroSection.addEventListener('mousemove', (e) => {
+                    if (!animationFrameRequested) {
+                        requestAnimationFrame(() => {
+                            // Calculate mouse position relative to the center of the hero section
+                            let mouseX = e.clientX - sectionCenterX;
+                            let mouseY = e.clientY - sectionCenterY;
+
+                            // Define the maximum movement range for the image (in pixels)
+                            const moveRangeX = 15; // Max horizontal movement
+                            const moveRangeY = 10; // Max vertical movement
+
+                            // Normalize mouse position relative to section size (-1 to 1)
+                            let normalizedX = mouseX / (sectionRect.width / 2);
+                            let normalizedY = mouseY / (sectionRect.height / 2);
+
+                            // Calculate the translation amounts
+                            let translateX = normalizedX * moveRangeX;
+                            let translateY = normalizedY * moveRangeY;
+
+                            // Apply the new transform, preserving the existing -translate-x-1/2 for centering
+                            // The order of transform functions matters: translateX(-50%) should be first for self-centering
+                            mainPersonImage.style.transform = `translateX(-50%) translate(${translateX}px, ${translateY}px)`;
+
+                            animationFrameRequested = false;
+                        });
+                        animationFrameRequested = true;
+                    }
+                });
+
+                // Reset image position when the mouse leaves the hero section
+                heroSection.addEventListener('mouseleave', () => {
+                    if (!animationFrameRequested) {
+                        requestAnimationFrame(() => {
+                            mainPersonImage.style.transform = `translateX(-50%)`; // Reset to original centered position
+                            animationFrameRequested = false;
+                        });
+                        animationFrameRequested = true;
+                    }
+                });
+
+                // Recalculate section center on window resize to keep the effect accurate
+                window.addEventListener('resize', () => {
+                    sectionRect = heroSection.getBoundingClientRect();
+                    sectionCenterX = sectionRect.left + sectionRect.width / 2;
+                    sectionCenterY = sectionRect.top + sectionRect.height / 2;
+                });
+            }
+        });
     </script>
 </body>
 </html>
