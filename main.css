@@ -1,6 +1,14 @@
 /* Import Google Fonts for Unbounded and Geist */
 @import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Unbounded:wght@200..900&display=swap');
 
+@font-face {
+        font-family: 'Tan Kulture Display';
+        src: url('assets/fonts/TAN-KULTURE-DISPLAY.otf') format('opentype');
+
+        font-family: 'Thunder ExtraBold';
+        src: url('assets/fonts/Rinter.otf') format('opentype');
+    }
+
 :root {
     --big-stone-black: #00000055;
     --frost-white: #f7faf6;
@@ -16,7 +24,7 @@
     --accent2: #3B586F;
 
     --main-font: "Geist", sans-serif;
-    --secondary-font: "Unbounded", sans-serif;
+    --secondary-font: "Thunder ExtraBold", sans-serif;
 }
 
 ::selection {
