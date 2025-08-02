@@ -8,38 +8,37 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0V4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="../main.css">
 </head>
 <body class="bg-[#0F1011] text-gray-100 min-h-screen flex flex-col">
-
     <!-- NAV BAR -->
-    <nav class="fixed px-5 py-3 top-0 left-0 right-0 z-50">
-        <div class="max-w-6xl py-2 px-8 mx-auto flex flex-col md:flex-row justify-between items-center liquid-glass relative transition-all duration-300 ease-in-out" id="nav-container">
+    <nav class="fixed px-5 py-2 top-3 md:top-5 lg:top-2 left-0 right-0 z-50">
+        <div class="max-w-6xl py-1 px-6 mx-auto flex flex-col md:flex-row justify-between items-center liquid-glass relative transition-all duration-300 ease-in-out" id="nav-container">
             <div class="flex items-center justify-between w-full md:w-auto">
-                <a href="#home" class="transition duration-300 ease-in-out main-logo">
-                    <img src="assets/JerichLogo.png" alt="">
+                <a href="#home" class="transition duration-300 ease-in-out main-logo flex items-center">
+                    <img src="../assets/JerichLogo.png" alt="" class="h-8 md:h-10">
                 </a>
 
                 <!-- Mobile Menu Button -->
-                <button id="mobile-menu-button" class="md:hidden text-var(--white) hover:text-[var(--white)] focus:outline-none focus:ring-2 focus:ring-purple-500 rounded-md ml-4">
+                <button id="mobile-menu-button" class="md:hidden flex items-center text-var(--white) hover:text-[var(--white)] focus:outline-none focus:ring-2 focus:ring-purple-500 rounded-md ml-4 h-full">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
 
             <!-- Desktop Navigation -->
-            <div class="hidden md:flex space-x-8 transition-all duration-300 ease-in-out links">
-                <a href="#projects" class="px-3 py-2 rounded-md">Projects</a>
-                <a href="#tools" class="px-3 py-2 rounded-md">Tools</a>
-                <a href="#experience" class="px-3 py-2 rounded-md">Experience</a>
-                <a href="#contact" class="px-3 py-2 rounded-md">Let's work together!</a>
+            <div class="hidden md:flex space-x-6 transition-all duration-300 ease-in-out links">
+                <a href="#projects" class="px-2 py-1 rounded-md">Projects</a>
+                <a href="#tools" class="px-2 py-1 rounded-md">Tools</a>
+                <a href="#experience" class="px-2 py-1 rounded-md">Experience</a>
+                <a href="#contact" class="px-2 py-1 rounded-md">Let's work together!</a>
             </div>
 
             <!-- Mobile Menu Links (Hidden by default) -->
             <div id="mobile-menu" class="flex flex-col space-y-2 md:hidden opacity-0 h-0 overflow-hidden transition-all duration-300 ease-in-out links">
-                <a href="#projects" class="px-3 py-2 rounded-md">Projects</a>
-                <a href="#tools" class="block px-3 py-2 rounded-md">Tools</a>
-                <a href="#experience" class="block px-3 py-2 rounded-md">Experience</a>
-                <a href="#contact" class="block px-3 py-2 rounded-md">Let's work together!</a>
+                <a href="#projects" class="px-2 py-1 rounded-md">Projects</a>
+                <a href="#tools" class="block px-2 py-1 rounded-md">Tools</a>
+                <a href="#experience" class="block px-2 py-1 rounded-md">Experience</a>
+                <a href="#contact" class="block px-2 py-1 rounded-md">Let's work together!</a>
             </div>
         </div>
     </nav>
@@ -47,106 +46,225 @@
     <!-- MAIN CONTENT -->
     <main class="flex-grow">
 
-        <!-- HERO SECTION -->
-        <section id="home" class="relative bg-[#1a1a2e] py-20 md:py-32 flex items-center justify-center min-h-screen rounded-b-lg shadow-xl overflow-hidden">
+        <section id="home" class="relative bg-[#1a1a2e] py-20 md:py-32 flex flex-col items-center justify-center min-h-screen rounded-b-lg overflow-hidden">
             <canvas id="hero-background"></canvas>
-            <!-- Dot Pattern -->
-            <div class="absolute top-0 w-full h-full opacity-20 z-[1] pointer-events-none masked-dots""></div>
+            <div class="absolute top-0 w-full h-full opacity-20 z-[1] pointer-events-none masked-dots"></div>
 
-            <h1 class="text-[4.7rem]/[1] md:text-[60rem]/[1] lg:text-[8rem] xl:text-[12rem]/[1.2] animate-fade-in-down absolute top-[12%] left-0 w-full px-6 md:px-12 text-center tracking-tight z-10">
-                Digital Crafter
-            </h1>
+            <div class="z-10 text-center px-6 md:px-12 absolute top-[16%] sm:top-[14%] md:top-[13%] lg:top-[15%]">
+                <h4 class="text-[17px]/[1] md:text-[21px]/[1] animate-fade-in-down font-normal text-shadow-2xs">
+                    👋🏻, I am your
+                </h4>
+                <h1 class="text-[63px]/[97%] md:text-[150px]/[94%] tracking-[7%] animate-fade-in-down font-black uppercase mt-2 sm:mt-3">
+                    Creative<br>Developer
+                </h1>
+                <a href="#projects" class="inline-block rounded-button shadow-effect mt-2 sm:mt-6 md:hidden z-30">
+                    Explore more<i class="fas fa-arrow-right ml-2"></i>
+                </a>
+            </div>
 
-            <img id="main-person-image" src="assets/photos/Casual.png" alt="Profile"
-                 class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-[70%] max-h-[40rem] w-auto object-cover z-10 transition-transform duration-1000 ease-out">
+            <img id="main-person-image" src="../assets/photos/Main.png" alt="Profile"
+                class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-[65%] sm:h-[70%] max-h-[40rem] w-auto object-cover z-10 transition-transform duration-1000 ease-out">
 
-            <a href="#projects" class="inline-block rounded-button shadow-effect absolute bottom-[3rem] md:bottom-12 transform translate-y-1/2 z-30">
-                Hire me! <i class="fas fa-arrow-right ml-2"></i>
+            <a href="#projects" class="hidden md:inline-block rounded-button shadow-effect absolute bottom-[3rem] md:bottom-12 translate-y-1/2 z-30">
+                Explore more<i class="fas fa-arrow-right ml-2"></i>
             </a>
         </section>
 
         <!-- ABOUT SECTION -->
-        <section id="about" class="py-16 md:py-24 bg-gray-800 rounded-lg shadow-xl mx-5 lg:mx-auto max-w-7xl mt-8 px-6">
+        <section id="about" class="py-16 md:py-24 bg-transparent rounded-lg shadow-xl mx-5 lg:mx-auto max-w-7xl mt-8 px-6 relative">
             <div class="container mx-auto text-left">
-                <div class="max-w-3xl mx-auto text-sm text-gray-300 space-y-6">
-                <h2 class="text-4xl font-bold text-[var(--white)] mb-8">About</h2>
-                    <p>
-                        At Bazil, we are a team of passionate digital creators dedicated to transforming ideas into impactful web solutions. With a blend of creativity and technical expertise, we specialize in building bespoke websites and applications that are not only visually stunning but also highly functional and user-friendly.
+                <div class="max-w-4xl mx-auto text-sm text-gray-300 text-center space-y-6">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-[var(--white)]">About</h2>
+                    <p class="text-md sm:text-lg">
+                        I'm a web and mobile developer from Cavite, skilled in Python, 3D modeling, and IoT. A creative problem-solver, I build a customer-focused solutions and brings ideas to life through code and design.
                     </p>
-                    <p>
-                        Our philosophy revolves around understanding your unique vision and translating it into a compelling online presence. We believe in transparent communication, collaborative development, and delivering excellence in every project, ensuring your digital footprint stands out.
-                    </p>
-                    <p>
-                        From intricate front-end designs to robust back-end systems, we handle every aspect of the development process with precision and care. Let us help you navigate the digital landscape and achieve your online goals.
-                    </p>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 about-cards">
-                        <div class="bg-gray-900 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
-                            <i class="fas fa-desktop text-white-400 mb-4"></i>
-                            <h3 class="font-semibold mb-2">Web Design & Development</h3>
-                            <p class="text-gray-400 text-sm">Creating visually appealing and highly functional websites from scratch.</p>
+                    <div class="mt-14 pt-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3" id="aboutCardsGrid">
+                        <div class="about-card bg-[--accent1] px-4 py-3 text-justify rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700" data-index="0">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-desktop text-white-400 mr-3"></i>
+                                <h3 class="font-semibold mb-0">Collaboration</h3>
+                            </div>
+                            <p class="text-gray-300 text-xs">I enjoy contributing to a team, sharing ideas, and helping everyone succeed together.</p>
                         </div>
-                        <div class="bg-gray-900 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
-                            <i class="fas fa-desktop text-white-400 mb-4"></i>
-                            <h3 class="font-semibold mb-2">Web Design & Development</h3>
-                            <p class="text-gray-400 text-sm">Creating visually appealing and highly functional websites from scratch.</p>
+                        <div class="about-card bg-[--accent1] px-4 py-3 text-justify rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700" data-index="1">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-desktop text-white-400 mr-3"></i>
+                                <h3 class="font-semibold mb-0">Problem-Solving</h3>
+                            </div>
+                            <p class="text-gray-300 text-xs">I break down challenges and find smart, practical solutions to get things done.</p>
                         </div>
-                        <div class="bg-gray-900 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
-                            <i class="fas fa-desktop text-white-400 mb-4"></i>
-                            <h3 class="font-semibold mb-2">Web Design & Development</h3>
-                            <p class="text-gray-400 text-sm">Creating visually appealing and highly functional websites from scratch.</p>
+                        <div class="about-card bg-[--accent1] px-4 py-3 text-justify rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700" data-index="2">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-desktop text-white-400 mr-3"></i>
+                                <h3 class="font-semibold mb-0">Adaptability</h3>
+                            </div>
+                            <p class="text-gray-300 text-xs">I adapt quickly to changes and stay focused no matter the challenge.</p>
                         </div>
-                        <div class="bg-gray-900 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
-                            <i class="fas fa-desktop text-white-400 mb-4"></i>
-                            <h3 class="font-semibold mb-2">Web Design & Development</h3>
-                            <p class="text-gray-400 text-sm">Creating visually appealing and highly functional websites from scratch.</p>
+                        <div class="about-card bg-[--accent1] px-4 py-3 text-justify rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700" data-index="3">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-desktop text-white-400 mr-3"></i>
+                                <h3 class="font-semibold mb-0">Interpersonal Skills</h3>
+                            </div>
+                            <p class="text-gray-300 text-xs">I connect with people through clear communication and mutual respect.</p>
+                        </div>
+                        <!-- Center the last card if it's alone on the last row (sm:col-span-2, lg:col-span-4) -->
+                        <div class="lg:max-w-[30%] bg-[--accent1] px-4 py-3 text-justify rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700 sm:col-span-2 sm:justify-self-center lg:col-span-4 lg:justify-self-center" data-index="4">
+                            <div class="flex items-center mb-2">
+                                <i class="fas fa-desktop text-white-400 mr-3"></i>
+                                <h3 class="font-semibold mb-0">Time Management</h3>
+                            </div>
+                            <p class="text-gray-300 text-xs">I manage my time well, staying organized and meeting deadlines with ease.</p>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- CAROUSEL SECTION -->
+        <!-- PROJECTS SECTION -->
         <section id="projects" class="py-16 md:py-24 bg-gray-900 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
             <div class="carousel-header">
-                <h2 class="text-4xl font-bold text-[var(--white)] mb-12">Projects</h2>
-                <div class="carousel-buttons flex space-x-4">
-                    <button class="carousel-button prev" id="prevBtn">&#10094;</button>
-                    <button class="carousel-button next" id="nextBtn">&#10095;</button>
+                <div class="flex items-center justify-between mb-12">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-[var(--white)]">Projects</h2>
+                    <div class="carousel-buttons flex space-x-4 ml-6">
+                        <button class="carousel-button prev" id="prevBtn">&#10094;</button>
+                        <button class="carousel-button next" id="nextBtn">&#10095;</button>
+                    </div>
                 </div>
             </div>
             <div class="carousel-wrapper" id="carouselWrapper">
-                <div class="carousel-slides" id="carouselSlides">
+                <div class="carousel-slides" id="carouselSlides"
+                    ontouchstart="carouselTouchStart(event)"
+                    ontouchmove="carouselTouchMove(event)"
+                    ontouchend="carouselTouchEnd(event)"
+                    onmousedown="carouselMouseDown(event)"
+                    onmousemove="carouselMouseMove(event)"
+                    onmouseup="carouselMouseUp(event)"
+                    onmouseleave="carouselMouseLeave(event)"
+                    style="touch-action: pan-y;">
                     <!-- Slide 1 -->
                     <div class="carousel-slide" data-original-index="0">
                         <div class="image-aspect-ratio">
-                            <img src="assets/photos/projects/Talklas.png" alt="Talklas">
+                            <img src="../assets/photos/projects/Talklas.png" alt="Talklas">
                         </div>
                     </div>
                     <!-- Slide 2 -->
                     <div class="carousel-slide" data-original-index="1">
                         <div class="image-aspect-ratio">
-                            <img src="assets/photos/projects/Nexus.png" alt="Ordering System">
+                            <img src="../assets/photos/projects/Nexus.png" alt="Ordering System">
                         </div>
                     </div>
                     <!-- Slide 3 -->
                     <div class="carousel-slide" data-original-index="2">
                         <div class="image-aspect-ratio">
-                            <img src="assets/photos/projects/SmartTrashBin.png" alt="Smart Trash Bin">
+                            <img src="../assets/photos/projects/SmartTrashBin.png" alt="Smart Trash Bin">
                         </div>
                     </div>
                     <!-- Slide 4 -->
                     <div class="carousel-slide" data-original-index="3">
                         <div class="image-aspect-ratio">
-                            <img src="assets/photos/projects/Aluminus.png" alt="Aluminus Protagonist">
+                            <img src="../assets/photos/projects/Aluminus.png" alt="Aluminus Protagonist">
                         </div>
                     </div>
                     <!-- Slide 5 -->
                     <div class="carousel-slide" data-original-index="4">
                         <div class="image-aspect-ratio">
-                            <img src="assets/photos/projects/3DDigitalTrainer.png" alt="3D Digital Trainer">
+                            <img src="../assets/photos/projects/3DDigitalTrainer.png" alt="3D Digital Trainer">
                         </div>
                     </div>
                 </div>
+            </div>
+        </section>
+        <script>
+        // Swipe support for carousel
+        let startX = 0, currentX = 0, isDragging = false;
+
+        function carouselTouchStart(e) {
+            if (e.touches && e.touches.length === 1) {
+                startX = e.touches[0].clientX;
+                isDragging = true;
+            }
+        }
+        function carouselTouchMove(e) {
+            if (!isDragging) return;
+            currentX = e.touches[0].clientX;
+        }
+        function carouselTouchEnd(e) {
+            if (!isDragging) return;
+            let deltaX = currentX - startX;
+            if (Math.abs(deltaX) > 50) {
+                if (deltaX < 0) {
+                    document.getElementById('nextBtn').click();
+                } else {
+                    document.getElementById('prevBtn').click();
+                }
+            }
+            isDragging = false;
+            startX = 0;
+            currentX = 0;
+        }
+
+        // Mouse drag support (for desktop)
+        let mouseDown = false, mouseStartX = 0, mouseCurrentX = 0;
+        function carouselMouseDown(e) {
+            mouseDown = true;
+            mouseStartX = e.clientX;
+        }
+        function carouselMouseMove(e) {
+            if (!mouseDown) return;
+            mouseCurrentX = e.clientX;
+        }
+        function carouselMouseUp(e) {
+            if (!mouseDown) return;
+            let deltaX = mouseCurrentX - mouseStartX;
+            if (Math.abs(deltaX) > 50) {
+                if (deltaX < 0) {
+                    document.getElementById('nextBtn').click();
+                } else {
+                    document.getElementById('prevBtn').click();
+                }
+            }
+            mouseDown = false;
+            mouseStartX = 0;
+            mouseCurrentX = 0;
+        }
+        function carouselMouseLeave(e) {
+            mouseDown = false;
+            mouseStartX = 0;
+            mouseCurrentX = 0;
+        }
+        </script>
+
+        <!-- EXPERIENCE SECTION -->
+        <section id="projects" class="py-16 md:py-24 bg-gray-900 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
+            <div class="cards-container">
+                <div class="card">
+                    <div class="card-header">
+                    <div class="icon">
+                        <svg fill="#ffffff" width="24" height="24" viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.35 1.68-.93 2.25z"
+                        ></path>
+                        </svg>
+                    </div>
+                    <a href="#" class="link-icon">
+                        <svg fill="#ffffff" width="16" height="16" viewBox="0 0 24 24">
+                        <path
+                            d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59L7.76 15.83 9.17 17.24 19 5.41V9h2V3h-7z"
+                        ></path>
+                        </svg>
+                    </a>
+                    </div>
+                    <div class="card-content">
+                    <h3>AI-Powered Development</h3>
+                    <p class="subtitle">Smart Websites</p>
+                    <p class="description">
+                        We build AI-driven websites that adapt to users and automation.
+                    </p>
+                    </div>
+                    <div class="card-image-container">
+                    <img src="../assets/photos/projects/Nexus.png" alt="AI-Powered Development" />
+                    </div>
+                </div>  
             </div>
         </section>
 
@@ -346,337 +464,6 @@
     </footer>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    
-    <script>
-        // Dynamically set the current year for the copyright notice
-        document.getElementById('current-year').textContent = new Date().getFullYear();
-
-        // Mobile menu toggle functionality
-        const mobileMenuButton = document.getElementById('mobile-menu-button');
-        const navContainer = document.getElementById('nav-container');
-        const mobileMenu = document.getElementById('mobile-menu'); // Get mobile menu element
-        const menuIcon = mobileMenuButton.querySelector('i');
-
-        mobileMenuButton.addEventListener('click', () => {
-            navContainer.classList.toggle('active');
-            // Toggle visibility for mobile menu
-            mobileMenu.classList.toggle('opacity-0');
-            mobileMenu.classList.toggle('h-0');
-            mobileMenu.classList.toggle('h-auto'); // Adjust height dynamically
-
-            // Toggle the icon between fa-bars and fa-times
-            if (navContainer.classList.contains('active')) {
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-times');
-            } else {
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
-            }
-        });
-
-        // Close mobile menu when a link is clicked
-        const mobileMenuLinks = document.querySelectorAll('#mobile-menu a');
-        mobileMenuLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                navContainer.classList.remove('active');
-                mobileMenu.classList.add('opacity-0');
-                mobileMenu.classList.add('h-0');
-                mobileMenu.classList.remove('h-auto');
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
-            });
-        });
-
-        // Gemini API integration for generating summary in the footer
-        document.getElementById('generate-summary-btn').addEventListener('click', async () => {
-            const summaryElement = document.getElementById('about-us-summary');
-            const originalSummary = summaryElement.textContent;
-            summaryElement.textContent = 'Generating summary...';
-
-            try {
-                let chatHistory = [];
-                const prompt = "Generate a concise, professional, and impactful summary (around 30-50 words) for a digital agency named 'Bazil' specializing in modern web development and creating engaging digital experiences.";
-                chatHistory.push({ role: "user", parts: [{ text: prompt }] });
-
-                const payload = { contents: chatHistory };
-                const apiKey = ""; // Canvas will automatically provide the API key at runtime
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-                const response = await fetch(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                const result = await response.json();
-
-                if (result.candidates && result.candidates.length > 0 &&
-                    result.candidates[0].content && result.candidates[0].content.parts &&
-                    result.candidates[0].content.parts.length > 0) {
-                    const generatedText = result.candidates[0].content.parts[0].text;
-                    summaryElement.textContent = generatedText;
-                } else {
-                    summaryElement.textContent = originalSummary;
-                    console.error('Gemini API response structure unexpected:', result);
-                }
-            } catch (error) {
-                summaryElement.textContent = originalSummary;
-                console.error('Error calling Gemini API:', error);
-            }
-        });
-
-        // WebGL Background for Hero Section using god_rays.json
-        let scene, camera, renderer, uniforms;
-        async function initBackground() {
-            const container = document.getElementById('hero-background');
-            container.style.position = 'absolute';
-            container.style.top = '0';
-            container.style.left = '0';
-            container.style.width = '100%';
-            container.style.height = '100%';
-            container.style.zIndex = '0';
-
-            // Load the god_rays.json file
-            const response = await fetch('assets/json/god_rays.json');
-            const shaderData = await response.json();
-
-            scene = new THREE.Scene();
-            camera = new THREE.OrthographicCamera(window.innerWidth / -2, window.innerWidth / 2, window.innerHeight / 2, window.innerHeight / -2, 1, 1000);
-            camera.position.z = 1;
-
-            renderer = new THREE.WebGLRenderer({ canvas: container, alpha: true });
-            renderer.setSize(window.innerWidth, window.innerHeight);
-
-            const geometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight);
-            uniforms = {
-                u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) },
-                u_mouse: { value: new THREE.Vector2() },
-                u_time: { value: 0 },
-                u_colors: { value: [
-                    new THREE.Vector4(...shaderData.uniforms.u_colors[0]),
-                    new THREE.Vector4(...shaderData.uniforms.u_colors[1])
-                ] },
-                u_intensity: { value: shaderData.uniforms.u_intensity },
-                u_rays: { value: shaderData.uniforms.u_rays },
-                u_reach: { value: shaderData.uniforms.u_reach }
-            };
-
-            const material = new THREE.ShaderMaterial({
-                vertexShader: shaderData.vertexShader,
-                fragmentShader: shaderData.fragmentShader,
-                uniforms: uniforms,
-                transparent: true
-            });
-
-            const plane = new THREE.Mesh(geometry, material);
-            scene.add(plane);
-
-            animate();
-        }
-
-        function animate() {
-            requestAnimationFrame(animate);
-            if (uniforms) uniforms.u_time.value += 0.05;
-            if (renderer) renderer.render(scene, camera);
-        }
-
-        function onWindowResize() {
-            camera.left = window.innerWidth / -2;
-            camera.right = window.innerWidth / 2;
-            camera.top = window.innerHeight / 2;
-            camera.bottom = window.innerHeight / -2;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-            if (uniforms) uniforms.u_resolution.value.set(window.innerWidth, window.innerHeight);
-        }
-
-        window.addEventListener('resize', onWindowResize);
-        initBackground().catch(error => console.error('Error initializing background:', error));
-
-
-        // --- Parallax Effect for Main.png Image ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const heroSection = document.getElementById('home');
-            const mainPersonImage = document.getElementById('main-person-image');
-
-            if (heroSection && mainPersonImage) {
-                let sectionRect = heroSection.getBoundingClientRect(); // Get section dimensions
-                let sectionCenterX = sectionRect.left + sectionRect.width / 2;
-                let sectionCenterY = sectionRect.top + sectionRect.height / 2;
-
-                let animationFrameRequested = false;
-
-                heroSection.addEventListener('mousemove', (e) => {
-                    if (!animationFrameRequested) {
-                        requestAnimationFrame(() => {
-                            // Calculate mouse position relative to the center of the hero section
-                            let mouseX = e.clientX - sectionCenterX;
-                            let mouseY = e.clientY - sectionCenterY;
-
-                            // Define the maximum movement range for the image (in pixels)
-                            const moveRangeX = 15; // Max horizontal movement
-                            const moveRangeY = 10; // Max vertical movement
-
-                            // Normalize mouse position relative to section size (-1 to 1)
-                            let normalizedX = mouseX / (sectionRect.width / 2);
-                            let normalizedY = mouseY / (sectionRect.height / 2);
-
-                            // Calculate the translation amounts
-                            let translateX = normalizedX * moveRangeX;
-                            let translateY = normalizedY * moveRangeY;
-
-                            // Apply the new transform, preserving the existing -translate-x-1/2 for centering
-                            // The order of transform functions matters: translateX(-50%) should be first for self-centering
-                            mainPersonImage.style.transform = `translateX(-50%) translate(${translateX}px, ${translateY}px)`;
-
-                            animationFrameRequested = false;
-                        });
-                        animationFrameRequested = true;
-                    }
-                });
-
-                // Reset image position when the mouse leaves the hero section
-                heroSection.addEventListener('mouseleave', () => {
-                    if (!animationFrameRequested) {
-                        requestAnimationFrame(() => {
-                            mainPersonImage.style.transform = `translateX(-50%)`; // Reset to original centered position
-                            animationFrameRequested = false;
-                        });
-                        animationFrameRequested = true;
-                    }
-                });
-
-                // Recalculate section center on window resize to keep the effect accurate
-                window.addEventListener('resize', () => {
-                    sectionRect = heroSection.getBoundingClientRect();
-                    sectionCenterX = sectionRect.left + sectionRect.width / 2;
-                    sectionCenterY = sectionRect.top + sectionRect.height / 2;
-                });
-            }
-        });
-
-        // --- Carousel Functionality ---
-        document.addEventListener('DOMContentLoaded', () => {
-            const carouselSlidesContainer = document.getElementById('carouselSlides');
-            const carouselWrapper = document.getElementById('carouselWrapper');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            const originalSlides = Array.from(carouselSlidesContainer.children);
-            const totalOriginalSlides = originalSlides.length;
-            let currentIndex = 0;
-            let slidesPerPage = 3;
-            const transitionDuration = 500;
-
-            const updateSlidesPerPage = () => {
-                if (window.innerWidth < 768) {
-                    slidesPerPage = 1;
-                } else if (window.innerWidth >= 768 && window.innerWidth < 1024) {
-                    slidesPerPage = 2;
-                } else {
-                    slidesPerPage = 3;
-                }
-                cloneSlides();
-                currentIndex = slidesPerPage;
-                updateCarousel(true);
-            };
-
-            const cloneSlides = () => {
-                const existingClones = carouselSlidesContainer.querySelectorAll('.cloned');
-                existingClones.forEach(clone => clone.remove());
-                carouselSlidesContainer.innerHTML = '';
-                originalSlides.forEach(slide => carouselSlidesContainer.appendChild(slide));
-                const firstClones = [];
-                const lastClones = [];
-                for (let i = 0; i < slidesPerPage; i++) {
-                    const clone = originalSlides[totalOriginalSlides - 1 - i].cloneNode(true);
-                    clone.classList.add('cloned');
-                    lastClones.unshift(clone);
-                }
-                for (let i = 0; i < slidesPerPage; i++) {
-                    const clone = originalSlides[i].cloneNode(true);
-                    clone.classList.add('cloned');
-                    firstClones.push(clone);
-                }
-                lastClones.forEach(clone => carouselSlidesContainer.prepend(clone));
-                firstClones.forEach(clone => carouselSlidesContainer.append(clone));
-                attachSlideClickListeners();
-            };
-
-            const updateCarousel = (instant = false) => {
-                if (instant) {
-                    carouselSlidesContainer.style.transition = 'none';
-                } else {
-                    carouselSlidesContainer.style.transition = `transform ${transitionDuration / 1000}s ease-in-out`;
-                }
-                carouselSlidesContainer.style.transform = `translateX(-${currentIndex * (100 / slidesPerPage)}%)`;
-                carouselSlidesContainer.offsetWidth;
-                updateButtonStates();
-                updateSlideStates();
-            };
-
-            const updateButtonStates = () => {
-                const disableButtons = totalOriginalSlides <= slidesPerPage;
-                prevBtn.disabled = disableButtons;
-                nextBtn.disabled = disableButtons;
-            };
-
-            const updateSlideStates = () => {
-                const allSlides = carouselSlidesContainer.querySelectorAll('.carousel-slide');
-                const centerSlideIndexOffset = Math.floor(slidesPerPage / 2);
-                allSlides.forEach((slide, index) => {
-                    const isActiveSlide = (index === currentIndex + centerSlideIndexOffset);
-                    if (isActiveSlide) {
-                        slide.classList.add('is-active');
-                        slide.classList.remove('is-grayscale');
-                    } else {
-                        slide.classList.remove('is-active');
-                        slide.classList.add('is-grayscale');
-                    }
-                });
-            };
-
-            const goToNextSlide = () => {
-                currentIndex++;
-                updateCarousel();
-                if (currentIndex >= totalOriginalSlides + slidesPerPage) {
-                    setTimeout(() => {
-                        currentIndex = slidesPerPage;
-                        updateCarousel(true);
-                    }, transitionDuration);
-                }
-            };
-
-            const goToPrevSlide = () => {
-                currentIndex--;
-                updateCarousel();
-                if (currentIndex < slidesPerPage) {
-                    setTimeout(() => {
-                        currentIndex = totalOriginalSlides + slidesPerPage - 1;
-                        updateCarousel(true);
-                    }, transitionDuration);
-                }
-            };
-
-            const attachSlideClickListeners = () => {
-                const allSlides = carouselSlidesContainer.querySelectorAll('.carousel-slide');
-                allSlides.forEach((slide, index) => {
-                    slide.onclick = () => {
-                        const centerSlideIndexOffset = Math.floor(slidesPerPage / 2);
-                        const isActiveSlide = (index === currentIndex + centerSlideIndexOffset);
-                        if (isActiveSlide) {
-                        } else if (index < currentIndex + centerSlideIndexOffset) {
-                            goToPrevSlide();
-                        } else if (index > currentIndex + centerSlideIndexOffset) {
-                            goToNextSlide();
-                        }
-                    };
-                });
-            };
-
-            nextBtn.addEventListener('click', () => goToNextSlide());
-            prevBtn.addEventListener('click', () => goToPrevSlide());
-            updateSlidesPerPage();
-        });
-    </script>
+    <script src="../scripts.js"></script>
 </body>
 </html>

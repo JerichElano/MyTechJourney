@@ -1,13 +1,4 @@
-/* Import Google Fonts for Unbounded and Geist */
-@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Unbounded:wght@200..900&display=swap');
-
-@font-face {
-        font-family: 'Tan Kulture Display';
-        src: url('assets/fonts/TAN-KULTURE-DISPLAY.otf') format('opentype');
-
-        font-family: 'Thunder ExtraBold';
-        src: url('assets/fonts/Rinter.otf') format('opentype');
-    }
+@import url('https://fonts.googleapis.com/css2?family=Big+Shoulders+Inline:opsz,wght@10..72,100..900&family=Geist:wght@100..900&display=swap');
 
 :root {
     --big-stone-black: #00000055;
@@ -24,7 +15,7 @@
     --accent2: #3B586F;
 
     --main-font: "Geist", sans-serif;
-    --secondary-font: "Thunder ExtraBold", sans-serif;
+    --secondary-font: "Big Shoulders Inline", sans-serif;
 }
 
 ::selection {
@@ -41,7 +32,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: var(--main-font), sans-serif;
+    font-family: var(--main-font);
     font-style: normal;
     font-weight: 100;
 }
@@ -54,13 +45,16 @@ html {
 ::-webkit-scrollbar {
     width: 8px;
 }
+
 ::-webkit-scrollbar-track {
-    background: #1a202c;
+    background: var(--accent1);
 }
+
 ::-webkit-scrollbar-thumb {
-    background: #6db3ed;
+    background: var(--blue);
     border-radius: 4px;
 }
+
 ::-webkit-scrollbar-thumb:hover {
     background: #84c3f6;
 }
@@ -75,7 +69,9 @@ html {
     box-shadow: 
         inset 2px 0 4px 3px rgba(0, 0, 0, 0.28), 
         inset 2px 3px 4px 0 rgba(255, 255, 255, 0.529), 
-        inset 0 0 2px 2px rgba(180, 180, 180, 0.337);
+        inset 0 0 2px 2px rgba(180, 180, 180, 0.337),
+        0 3rem 3rem rgba(0, 0, 0, 0.097),
+        0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.287);
     position: relative;
     overflow: hidden;
     transition: 
@@ -90,21 +86,20 @@ html {
     padding: 10px 20px;
     border-radius: 30px;
     font-size: 16px;
-    font-weight: 600;    
+    font-weight: 600;      
     text-shadow: 2px 2px 2px rgba(0, 0, 0, 0.2);
-    background: linear-gradient(135deg, rgb(109, 179, 237), rgb(109, 154, 237));
+    background: linear-gradient(135deg, var(--blue), #6d9aed);
     border-radius: 50px;
     border: 1px solid rgba(255, 255, 255, 0.18);
     box-shadow: 
         inset 2px 0 4px 3px rgba(255, 255, 255, 0.28), 
         inset 2px 3px 4px 0 rgba(255, 255, 255, 0.529), 
-        inset 0 0 2px 2px rgba(23, 23, 23, 0.337);
+        inset 0 0 2px 2px rgba(23, 23, 23, 0.337),
+        0 3rem 3rem rgba(0, 0, 0, 0.097),
+        0 1rem 1rem -0.6rem rgba(0, 0, 0, 0.287);
     position: relative;
     overflow: hidden;
-    transition: 
-        height 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7), 
-        padding 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7),
-        transform 0.5s ease;
+    transition: transform 0.5s ease;
 }
 
 .rounded-button:hover {
@@ -113,10 +108,7 @@ html {
 
 /* ----- NAV BAR ----- */
 #nav-container {
-    min-height: 60px;
-    transition: 
-        height 0.2s cubic-bezier(0.2, 0.05, 0.2, 1.7), 
-        padding 0.2s cubic-bezier(0.2, 0.05, 0.2, 3);
+    transition: height 0.2s cubic-bezier(0.2, 0.05, 0.2, 1.7), padding 0.2s cubic-bezier(0.2, 0.05, 0.2, 3);
 }
 
 #nav-container.active {
@@ -125,9 +117,7 @@ html {
 }
 
 #mobile-menu {
-    transition: 
-        opacity 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7), 
-        height 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7);
+    transition: opacity 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7), height 0.9s cubic-bezier(0.2, 0.05, 0.2, 1.7);
 }
 
 #mobile-menu-button .fa-times {
@@ -160,14 +150,13 @@ html {
 
 nav .links a {
     color: var(--white);
-    transition: transform 0.5s ease;    
+    transition: transform 0.5s ease;     
     filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.5));
-    font-weight: 600;
-    font-size: 17px;
+    font-weight: 500;
+    font-size: 16.66px;
 }
 
 nav .links a:hover {
-    /* color: var(--aqua-island-light-blue); */
     transform: scale(1.1);
 }
 /* ----- End of nav bar ----- */
@@ -177,7 +166,6 @@ nav .links a:hover {
     position: relative;
     background: transparent;
 }
-
 #hero-background {
     position: absolute;
     top: 0;
@@ -186,31 +174,36 @@ nav .links a:hover {
     height: 100%;
     z-index: 0;
 }
-
 #home .container {
     position: relative;
     z-index: 10;
 }
-
 .masked-dots {
-    background-image: radial-gradient(#ffffff95 2px, transparent 1px); background-size: 20px 20px;
+    background-image: radial-gradient(var(--white) 2px, transparent 1px); 
+    background-size: 20px 20px;
     mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 70%);
-    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 70%); /* For Safari */
+    -webkit-mask-image: radial-gradient(ellipse at center, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 0) 70%); 
 }
-
 h1 {
-    font-family: var(--secondary-font), sans-serif;
+    font-family: var(--secondary-font);
+}
+h4 {
+    font-family: var(--main-font);
+}
+.zoom-out {
+    transform: translate(-50%, 0) scale(1) !important;
+    transition: transform 1.5s cubic-bezier(0.645, 0.045, 0.355, 1);
+    transform-origin: bottom center;
+}
+.zoom-in {
+    transform: translate(-50%, 0) scale(10) !important;
+    transition: transform 2s cubic-bezier(0.65, 0, 0.35, 1); 
+    transform-origin: bottom center;
 }
 /* ----- End of hero section ----- */
 
-/* ----- ABOUT SECTION ----- */
-section {
-    background-color: var(--accent2);
-}
 
-.about-cards {
-    font-size: small;
-}
+/* ----- ABOUT SECTION ----- */
 /* ----- End of about section */
 
 /* ----- PROJECTS ----- */
@@ -311,3 +304,66 @@ section {
     }
 }
 /* ----- End of projects ----- */
+
+.cards-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  background-color: #1a1a1a;
+  border-radius: 12px;
+  padding: 24px;
+  width: 320px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.icon {
+  background-color: #333333;
+  border-radius: 50%;
+  padding: 8px;
+}
+
+.link-icon {
+  color: #ffffff;
+}
+
+.card-content h3 {
+  font-size: 1.5rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.card-content .subtitle {
+  color: #b0b0b0;
+  font-size: 0.9rem;
+  margin: 4px 0 16px;
+}
+
+.card-content .description {
+  color: #b0b0b0;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin: 0 0 24px;
+}
+
+.card-image-container {
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.card-image-container img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
