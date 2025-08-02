@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0V4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="../main.css">
+    <link rel="stylesheet" href="main.css"> <!-- Removed ../ if in same directory -->
 </head>
 <body class="bg-[#0F1011] text-gray-100 min-h-screen flex flex-col">
     <!-- NAV BAR -->
@@ -16,24 +16,18 @@
         <div class="max-w-6xl py-1 px-6 mx-auto flex flex-col md:flex-row justify-between items-center liquid-glass relative transition-all duration-300 ease-in-out" id="nav-container">
             <div class="flex items-center justify-between w-full md:w-auto">
                 <a href="#home" class="transition duration-300 ease-in-out main-logo flex items-center">
-                    <img src="../assets/JerichLogo.png" alt="" class="h-8 md:h-10">
+                    <img src="assets/JerichLogo.png" alt="" class="h-8 md:h-10">
                 </a>
-
-                <!-- Mobile Menu Button -->
                 <button id="mobile-menu-button" class="md:hidden flex items-center text-var(--white) hover:text-[var(--white)] focus:outline-none focus:ring-2 focus:ring-purple-500 rounded-md ml-4 h-full">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
-
-            <!-- Desktop Navigation -->
             <div class="hidden md:flex space-x-6 transition-all duration-300 ease-in-out links">
                 <a href="#projects" class="px-2 py-1 rounded-md">Projects</a>
                 <a href="#tools" class="px-2 py-1 rounded-md">Tools</a>
                 <a href="#experience" class="px-2 py-1 rounded-md">Experience</a>
                 <a href="#contact" class="px-2 py-1 rounded-md">Let's work together!</a>
             </div>
-
-            <!-- Mobile Menu Links (Hidden by default) -->
             <div id="mobile-menu" class="flex flex-col space-y-2 md:hidden opacity-0 h-0 overflow-hidden transition-all duration-300 ease-in-out links">
                 <a href="#projects" class="px-2 py-1 rounded-md">Projects</a>
                 <a href="#tools" class="block px-2 py-1 rounded-md">Tools</a>
@@ -42,14 +36,10 @@
             </div>
         </div>
     </nav>
-
-    <!-- MAIN CONTENT -->
     <main class="flex-grow">
-
         <section id="home" class="relative bg-[#1a1a2e] py-20 md:py-32 flex flex-col items-center justify-center min-h-screen rounded-b-lg overflow-hidden">
             <canvas id="hero-background"></canvas>
             <div class="absolute top-0 w-full h-full opacity-20 z-[1] pointer-events-none masked-dots"></div>
-
             <div class="z-10 text-center px-6 md:px-12 absolute top-[16%] sm:top-[14%] md:top-[13%] lg:top-[15%]">
                 <h4 class="text-[17px]/[1] md:text-[21px]/[1] animate-fade-in-down font-normal text-shadow-2xs">
                     👋🏻, I am your
@@ -61,15 +51,12 @@
                     Explore more<i class="fas fa-arrow-right ml-2"></i>
                 </a>
             </div>
-
-            <img id="main-person-image" src="../assets/photos/Main.png" alt="Profile"
+            <img id="main-person-image" src="assets/photos/Main.png" alt="Profile"
                 class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-[65%] sm:h-[70%] max-h-[40rem] w-auto object-cover z-10 transition-transform duration-1000 ease-out">
-
             <a href="#projects" class="hidden md:inline-block rounded-button shadow-effect absolute bottom-[3rem] md:bottom-12 translate-y-1/2 z-30">
                 Explore more<i class="fas fa-arrow-right ml-2"></i>
             </a>
         </section>
-
         <!-- ABOUT SECTION -->
         <section id="about" class="py-16 md:py-24 bg-transparent rounded-lg shadow-xl mx-5 lg:mx-auto max-w-7xl mt-8 px-6 relative">
             <div class="container mx-auto text-left">
@@ -107,7 +94,6 @@
                             </div>
                             <p class="text-gray-300 text-xs">I connect with people through clear communication and mutual respect.</p>
                         </div>
-                        <!-- Center the last card if it's alone on the last row (sm:col-span-2, lg:col-span-4) -->
                         <div class="lg:max-w-[30%] bg-[--accent1] px-4 py-3 text-justify rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700 sm:col-span-2 sm:justify-self-center lg:col-span-4 lg:justify-self-center" data-index="4">
                             <div class="flex items-center mb-2">
                                 <i class="fas fa-desktop text-white-400 mr-3"></i>
@@ -119,7 +105,6 @@
                 </div>
             </div>
         </section>
-
         <!-- PROJECTS SECTION -->
         <section id="projects" class="py-16 md:py-24 bg-gray-900 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
             <div class="carousel-header">
@@ -144,31 +129,31 @@
                     <!-- Slide 1 -->
                     <div class="carousel-slide" data-original-index="0">
                         <div class="image-aspect-ratio">
-                            <img src="../assets/photos/projects/Talklas.png" alt="Talklas">
+                            <img src="assets/photos/projects/Talklas.png" alt="Talklas">
                         </div>
                     </div>
                     <!-- Slide 2 -->
                     <div class="carousel-slide" data-original-index="1">
                         <div class="image-aspect-ratio">
-                            <img src="../assets/photos/projects/Nexus.png" alt="Ordering System">
+                            <img src="assets/photos/projects/Nexus.png" alt="Ordering System">
                         </div>
                     </div>
                     <!-- Slide 3 -->
                     <div class="carousel-slide" data-original-index="2">
                         <div class="image-aspect-ratio">
-                            <img src="../assets/photos/projects/SmartTrashBin.png" alt="Smart Trash Bin">
+                            <img src="assets/photos/projects/SmartTrashBin.png" alt="Smart Trash Bin">
                         </div>
                     </div>
                     <!-- Slide 4 -->
                     <div class="carousel-slide" data-original-index="3">
                         <div class="image-aspect-ratio">
-                            <img src="../assets/photos/projects/Aluminus.png" alt="Aluminus Protagonist">
+                            <img src="assets/photos/projects/Aluminus.png" alt="Aluminus Protagonist">
                         </div>
                     </div>
                     <!-- Slide 5 -->
                     <div class="carousel-slide" data-original-index="4">
                         <div class="image-aspect-ratio">
-                            <img src="../assets/photos/projects/3DDigitalTrainer.png" alt="3D Digital Trainer">
+                            <img src="assets/photos/projects/3DDigitalTrainer.png" alt="3D Digital Trainer">
                         </div>
                     </div>
                 </div>
@@ -233,9 +218,8 @@
             mouseCurrentX = 0;
         }
         </script>
-
         <!-- EXPERIENCE SECTION -->
-        <section id="projects" class="py-16 md:py-24 bg-gray-900 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
+        <section id="experience" class="py-16 md:py-24 bg-gray-900 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
             <div class="cards-container">
                 <div class="card">
                     <div class="card-header">
@@ -262,12 +246,11 @@
                     </p>
                     </div>
                     <div class="card-image-container">
-                    <img src="../assets/photos/projects/Nexus.png" alt="AI-Powered Development" />
+                    <img src="assets/photos/projects/Nexus.png" alt="AI-Powered Development" />
                     </div>
                 </div>  
             </div>
         </section>
-
         <!-- Tools Section (Re-purposed for Services/Expertise to match Bazil's style) -->
         <section id="tools" class="py-16 md:py-24 bg-gray-800 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
             <div class="container mx-auto text-center">
@@ -296,7 +279,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Skills Section (Re-purposed for Technologies to match Bazil's style) -->
         <section id="skills" class="py-16 md:py-24 bg-gray-900 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
             <div class="container mx-auto text-center">
@@ -345,7 +327,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Experience Section (Re-purposed for Our Process to match Bazil's style) -->
         <section id="experience" class="py-16 md:py-24 bg-gray-800 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
             <div class="container mx-auto text-center">
@@ -378,7 +359,6 @@
                 </div>
             </div>
         </section>
-
         <!-- Contact Section -->
         <section id="contact" class="py-16 md:py-24 bg-gray-900 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
             <div class="container mx-auto text-center">
@@ -405,13 +385,10 @@
                 </div>
             </div>
         </section>
-
     </main>
-
     <!-- Footer Section -->
     <footer class="bg-gray-800 text-white py-8 px-4 sm:px-6 lg:px-8 rounded-t-lg shadow-lg mt-8">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
-
             <!-- Company Info / About Section -->
             <div class="flex flex-col items-center md:items-start">
                 <h3 class="text-xl font-semibold mb-4 text-purple-300">About Bazil.</h3>
@@ -422,7 +399,6 @@
                     Generate Summary ✨
                 </button>
             </div>
-
             <!-- Quick Links Section -->
             <div class="flex flex-col items-center md:items-start">
                 <h3 class="text-xl font-semibold mb-4 text-purple-300">Quick Links</h3>
@@ -433,7 +409,6 @@
                     <li><a href="#contact" class="text-gray-400 hover:text-[var(--white)] transition duration-300 ease-in-out rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50">Contact</a></li>
                 </ul>
             </div>
-
             <!-- Contact Info / Social Media Section -->
             <div class="flex flex-col items-center md:items-start">
                 <h3 class="text-xl font-semibold mb-4 text-purple-300">Contact Info</h3>
@@ -454,16 +429,13 @@
                     </a>
                 </div>
             </div>
-
         </div>
-
         <!-- Copyright Notice -->
         <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500 text-sm">
             &copy; <span id="current-year"></span> Bazil. All rights reserved.
         </div>
     </footer>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="../scripts.js"></script>
+    <script src="scripts.js"></script>
 </body>
 </html>
