@@ -8,7 +8,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" xintegrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0V4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="../main.css">
 </head>
 <body class="bg-[#0F1011] text-gray-100 min-h-screen flex flex-col">
     <!-- NAV BAR -->
@@ -16,18 +16,24 @@
         <div class="max-w-6xl py-1 px-6 mx-auto flex flex-col md:flex-row justify-between items-center liquid-glass relative transition-all duration-300 ease-in-out" id="nav-container">
             <div class="flex items-center justify-between w-full md:w-auto">
                 <a href="#home" class="transition duration-300 ease-in-out main-logo flex items-center">
-                    <img src="assets/JerichLogo.png" alt="" class="h-8 md:h-10">
+                    <img src="../assets/JerichLogo.png" alt="" class="h-8 md:h-10">
                 </a>
+
+                <!-- Mobile Menu Button -->
                 <button id="mobile-menu-button" class="md:hidden flex items-center text-var(--white) hover:text-[var(--white)] focus:outline-none focus:ring-2 focus:ring-purple-500 rounded-md ml-4 h-full">
                     <i class="fas fa-bars text-2xl"></i>
                 </button>
             </div>
+
+            <!-- Desktop Navigation -->
             <div class="hidden md:flex space-x-6 transition-all duration-300 ease-in-out links">
                 <a href="#projects" class="px-2 py-1 rounded-md">Projects</a>
                 <a href="#tools" class="px-2 py-1 rounded-md">Tools</a>
                 <a href="#experience" class="px-2 py-1 rounded-md">Experience</a>
                 <a href="#contact" class="px-2 py-1 rounded-md">Let's work together!</a>
             </div>
+
+            <!-- Mobile Menu Links (Hidden by default) -->
             <div id="mobile-menu" class="flex flex-col space-y-2 md:hidden opacity-0 h-0 overflow-hidden transition-all duration-300 ease-in-out links">
                 <a href="#projects" class="px-2 py-1 rounded-md">Projects</a>
                 <a href="#tools" class="block px-2 py-1 rounded-md">Tools</a>
@@ -36,10 +42,14 @@
             </div>
         </div>
     </nav>
+
+    <!-- MAIN CONTENT -->
     <main class="flex-grow">
+
         <section id="home" class="relative bg-[#1a1a2e] py-20 md:py-32 flex flex-col items-center justify-center min-h-screen rounded-b-lg overflow-hidden">
             <canvas id="hero-background"></canvas>
             <div class="absolute top-0 w-full h-full opacity-20 z-[1] pointer-events-none masked-dots"></div>
+
             <div class="z-10 text-center px-6 md:px-12 absolute top-[16%] sm:top-[14%] md:top-[13%] lg:top-[15%]">
                 <h4 class="text-[17px]/[1] md:text-[21px]/[1] animate-fade-in-down font-normal text-shadow-2xs">
                     👋🏻, I am your
@@ -52,12 +62,14 @@
                 </a>
             </div>
 
-            <img id="main-person-image" src="assets/photos/Main.png" alt="Profile"
+            <img id="main-person-image" src="../assets/photos/Main.png" alt="Profile"
                 class="absolute bottom-0 left-1/2 transform -translate-x-1/2 h-[65%] sm:h-[70%] max-h-[40rem] w-auto object-cover z-10 transition-transform duration-1000 ease-out">
+
             <a href="#projects" class="hidden md:inline-block rounded-button shadow-effect absolute bottom-[3rem] md:bottom-12 translate-y-1/2 z-30">
                 Explore more<i class="fas fa-arrow-right ml-2"></i>
             </a>
         </section>
+
         <!-- ABOUT SECTION -->
         <section id="about" class="py-16 md:py-24 bg-transparent rounded-lg shadow-xl mx-5 lg:mx-auto max-w-7xl mt-8 px-6 relative">
             <div class="container mx-auto text-left">
@@ -95,6 +107,7 @@
                             </div>
                             <p class="text-gray-300 text-xs">I connect with people through clear communication and mutual respect.</p>
                         </div>
+                        <!-- Center the last card if it's alone on the last row (sm:col-span-2, lg:col-span-4) -->
                         <div class="lg:max-w-[30%] bg-[--accent1] px-4 py-3 text-justify rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700 sm:col-span-2 sm:justify-self-center lg:col-span-4 lg:justify-self-center" data-index="4">
                             <div class="flex items-center mb-2">
                                 <i class="fas fa-desktop text-white-400 mr-3"></i>
@@ -106,6 +119,7 @@
                 </div>
             </div>
         </section>
+
         <!-- PROJECTS SECTION -->
         <section id="projects" class="py-16 md:py-24 bg-gray-900 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
             <div class="carousel-header">
@@ -130,31 +144,31 @@
                     <!-- Slide 1 -->
                     <div class="carousel-slide" data-original-index="0">
                         <div class="image-aspect-ratio">
-                            <img src="assets/photos/projects/Talklas.png" alt="Talklas">
+                            <img src="../assets/photos/projects/Talklas.png" alt="Talklas">
                         </div>
                     </div>
                     <!-- Slide 2 -->
                     <div class="carousel-slide" data-original-index="1">
                         <div class="image-aspect-ratio">
-                            <img src="assets/photos/projects/Nexus.png" alt="Ordering System">
+                            <img src="../assets/photos/projects/Nexus.png" alt="Ordering System">
                         </div>
                     </div>
                     <!-- Slide 3 -->
                     <div class="carousel-slide" data-original-index="2">
                         <div class="image-aspect-ratio">
-                            <img src="assets/photos/projects/SmartTrashBin.png" alt="Smart Trash Bin">
+                            <img src="../assets/photos/projects/SmartTrashBin.png" alt="Smart Trash Bin">
                         </div>
                     </div>
                     <!-- Slide 4 -->
                     <div class="carousel-slide" data-original-index="3">
                         <div class="image-aspect-ratio">
-                            <img src="assets/photos/projects/Aluminus.png" alt="Aluminus Protagonist">
+                            <img src="../assets/photos/projects/Aluminus.png" alt="Aluminus Protagonist">
                         </div>
                     </div>
                     <!-- Slide 5 -->
                     <div class="carousel-slide" data-original-index="4">
                         <div class="image-aspect-ratio">
-                            <img src="assets/photos/projects/3DDigitalTrainer.png" alt="3D Digital Trainer">
+                            <img src="../assets/photos/projects/3DDigitalTrainer.png" alt="3D Digital Trainer">
                         </div>
                     </div>
                 </div>
@@ -219,8 +233,9 @@
             mouseCurrentX = 0;
         }
         </script>
+
         <!-- EXPERIENCE SECTION -->
-        <section id="experience" class="py-16 md:py-24 bg-gray-900 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
+        <section id="projects" class="py-16 md:py-24 bg-gray-900 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
             <div class="cards-container">
                 <div class="card">
                     <div class="card-header">
@@ -247,11 +262,419 @@
                     </p>
                     </div>
                     <div class="card-image-container">
-                    <img src="assets/photos/projects/Nexus.png" alt="AI-Powered Development" />
+                    <img src="../assets/photos/projects/Nexus.png" alt="AI-Powered Development" />
                     </div>
                 </div>  
             </div>
         </section>
+
+        <section id="experience-cards" class="py-16 md:py-24 bg-[rgba(30,32,44,0.85)] backdrop-blur-md rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-[var(--white)] mb-12 text-center">My Experience</h2>
+                <div class="flex flex-wrap justify-center gap-8">
+                    <!-- Experience Card 1 -->
+                    <div class="bg-[rgba(40,42,60,0.85)] backdrop-blur-lg border border-gray-700 rounded-xl shadow-lg p-6 max-w-xs flex flex-col items-center glassy-card transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                        <img src="../assets/photos/experience/company1.png" alt="Company 1 Logo" class="w-20 h-20 object-cover rounded-full mb-4 border-2 border-[var(--accent1)] shadow-md">
+                        <div class="mb-3">
+                            <i class="fas fa-laptop-code text-3xl text-purple-400"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-[var(--white)] mb-2 text-center">Frontend Developer</h3>
+                        <p class="text-gray-300 text-sm text-center">Developed interactive and responsive web interfaces using React.js and Tailwind CSS, focusing on user experience and performance.</p>
+                    </div>
+                    <!-- Experience Card 2 -->
+                    <div class="bg-[rgba(40,42,60,0.85)] backdrop-blur-lg border border-gray-700 rounded-xl shadow-lg p-6 max-w-xs flex flex-col items-center glassy-card transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                        <img src="../assets/photos/experience/company2.png" alt="Company 2 Logo" class="w-20 h-20 object-cover rounded-full mb-4 border-2 border-[var(--accent1)] shadow-md">
+                        <div class="mb-3">
+                            <i class="fas fa-server text-3xl text-green-400"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-[var(--white)] mb-2 text-center">Backend Engineer</h3>
+                        <p class="text-gray-300 text-sm text-center">Built scalable APIs and microservices with Node.js and Python, ensuring robust data management and security for enterprise clients.</p>
+                    </div>
+                    <!-- Experience Card 3 -->
+                    <div class="bg-[rgba(40,42,60,0.85)] backdrop-blur-lg border border-gray-700 rounded-xl shadow-lg p-6 max-w-xs flex flex-col items-center glassy-card transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                        <img src="../assets/photos/experience/company3.png" alt="Company 3 Logo" class="w-20 h-20 object-cover rounded-full mb-4 border-2 border-[var(--accent1)] shadow-md">
+                        <div class="mb-3">
+                            <i class="fas fa-mobile-alt text-3xl text-blue-400"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-[var(--white)] mb-2 text-center">Mobile App Developer</h3>
+                        <p class="text-gray-300 text-sm text-center">Created cross-platform mobile apps with Flutter, delivering seamless user experiences and integrating IoT features for smart solutions.</p>
+                    </div>
+                    <!-- Experience Card 4 -->
+                    <div class="bg-[rgba(40,42,60,0.85)] backdrop-blur-lg border border-gray-700 rounded-xl shadow-lg p-6 max-w-xs flex flex-col items-center glassy-card transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
+                        <img src="../assets/photos/experience/company4.png" alt="Company 4 Logo" class="w-20 h-20 object-cover rounded-full mb-4 border-2 border-[var(--accent1)] shadow-md">
+                        <div class="mb-3">
+                            <i class="fas fa-project-diagram text-3xl text-yellow-400"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-[var(--white)] mb-2 text-center">Project Lead</h3>
+                        <p class="text-gray-300 text-sm text-center">Led a team of developers and designers to deliver innovative digital products, managing timelines, client communication, and quality assurance.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="logo-carousel-section" class="w-full my-16 bg-transparent" style="background: none;">
+            <div class="relative w-screen left-1/2 right-1/2 -translate-x-1/2 px-0 sm:px-0" style="background: none; max-width: 100vw; overflow-x: clip;">
+                <!-- Fades -->
+                <div class="pointer-events-none absolute top-0 left-0 h-full w-16 z-20 fade-left" style="background: linear-gradient(to right, #0F1011 10%, transparent 100%);"></div>
+                <div class="pointer-events-none absolute top-0 right-0 h-full w-16 z-20 fade-right" style="background: linear-gradient(to left, #0F1011 10%, transparent 100%);"></div>
+                <!-- Carousel Path -->
+                <div class="overflow-x-visible w-full relative" style="height: 110px; background: none;">
+                    <svg class="absolute top-0 left-0 w-full h-full pointer-events-none z-10" viewBox="0 0 1000 110" preserveAspectRatio="none">
+                        <!-- Single arch curve: M0,80 Q500,0 1000,80 -->
+                        <path id="logo-arch-path" d="M0,80 Q500,0 1000,80" fill="none" stroke="transparent" stroke-width="0"/>
+                    </svg>
+                    <!-- 
+                        To ensure logos do not overlap and always have a fixed space between them,
+                        we must not absolutely position each logo (as in the original JS), but instead
+                        use a flex container with a fixed gap. 
+                        If you want to keep the arch effect, you must update the JS to position each logo
+                        along the arch but also offset each logo by a fixed minimum distance (e.g. 24px or 2rem).
+                        If the JS still uses absolute positioning and calculates X/Y for each logo, 
+                        you must ensure that the X for each logo is at least (logoWidth + gap) apart from the previous.
+                        Otherwise, using flexbox with gap (as below) will guarantee spacing, but you lose the arch effect.
+                    -->
+                    <div 
+                        id="logo-carousel-track"
+                        class="absolute left-0 top-0 w-full h-full flex flex-row items-center justify-center gap-6 sm:gap-8 md:gap-10 lg:gap-12"
+                        style="will-change: transform; background: none; pointer-events: auto; height: 100%;"
+                    >
+                        <!-- Logos will be injected here, each inside a flex item with margin via gap -->
+                    </div>
+                </div>
+            </div>
+        </section>
+        <style>
+            #logo-carousel-section {
+                padding-left: 0.5rem;
+                padding-right: 0.5rem;
+                background: none !important;
+            }
+            @media (max-width: 640px) {
+                #logo-carousel-section {
+                    padding-left: 1.5rem;
+                    padding-right: 1.5rem;
+                }
+                #logo-carousel-track img {
+                    width: 44px !important;
+                    height: 44px !important;
+                }
+            }
+            #logo-carousel-track {
+                width: 100%;
+                height: 100%;
+                position: absolute;
+                left: 0; top: 0;
+                pointer-events: none;
+                background: none !important;
+            }
+            #logo-carousel-track .logo-container {
+                position: absolute;
+                background: transparent !important;
+                pointer-events: auto;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                /* No border, no box, just transparent */
+                box-shadow: none !important;
+                z-index: 10;
+                transition: filter 0.2s;
+            }
+            #logo-carousel-track img {
+                width: 60px;
+                height: 60px;
+                object-fit: contain;
+                margin: 0;
+                background: transparent !important;
+                border-radius: 0;
+                box-shadow: none !important;
+                transition: filter 0.2s;
+                filter: grayscale(1) brightness(0.92) contrast(1.1) drop-shadow(0 2px 8px rgba(0,0,0,0.10));
+                pointer-events: auto;
+                z-index: 10;
+                opacity: 1;
+                visibility: visible;
+                /* Make sure the glow is not clipped */
+                overflow: visible;
+            }
+            #logo-carousel-track img.logo-hovered {
+                filter: grayscale(0) brightness(1.05) drop-shadow(0 0 24px #7c3aedcc) drop-shadow(0 0 8px #fff8) !important;
+                z-index: 100;
+            }
+            .fade-left, .fade-right {
+                top: 0;
+                bottom: 0;
+                pointer-events: none;
+            }
+        </style>
+        <script>
+        // List of logo image URLs (replace with yo ur own or use SVGs)
+        const logoList = [
+            "assets/photos/Logo/BSCS.png",
+            "assets/photos/Logo/ComElec.png",
+            "assets/photos/Logo/CSG.png",
+            "assets/photos/Logo/Talklas.png",
+            "assets/photos/Logo/Aluminus.png",
+            "assets/photos/Logo/InnerSPARC.png",
+            "assets/photos/Logo/CSC.png",
+        ];
+
+        // Helper: get the arch curve point for a given t (0..1)
+        function getArchCurvePoint(t, width, height) {
+            // SVG: M0,80 Q500,0 1000,80
+            // Quadratic Bezier: P0=(0,80), P1=(500,0), P2=(1000,80)
+            // B(t) = (1-t)^2*P0 + 2(1-t)t*P1 + t^2*P2
+            let x = (1-t)*(1-t)*0 + 2*(1-t)*t*500 + t*t*1000;
+            let y = (1-t)*(1-t)*80 + 2*(1-t)*t*0 + t*t*80;
+            return [x/1000*width, y/110*height];
+        }
+
+        function createLogoCarousel() {
+            const track = document.getElementById('logo-carousel-track');
+            if (!track) return;
+            track.innerHTML = '';
+            
+            // Responsive: logo size and spacing
+            const isMobile = window.innerWidth < 640;
+            const logoSize = isMobile ? 44 : 60;
+            const minGap = isMobile ? 32 : 36; // Fixed minimum gap between logos
+            
+            // Calculate available curve length (approximate)
+            const container = track.parentElement;
+            const width = container.offsetWidth;
+            const height = container.offsetHeight;
+            
+            // Calculate how many logos fit with guaranteed spacing
+            const logoSpace = logoSize + minGap;
+            const curveLength = width * 1.1; // Arch curve length
+            let visibleLogoCount = Math.floor(curveLength / logoSpace);
+            
+            // Ensure we have enough logos for seamless loop
+            let totalLogos = Math.max(visibleLogoCount, logoList.length * 2);
+            
+            // Build the logo array for seamless loop
+            let logos = [];
+            while (logos.length < totalLogos) {
+                logos = logos.concat(logoList);
+            }
+            logos = logos.slice(0, totalLogos);
+            
+            // Calculate fixed spacing along the curve
+            const totalCurveLength = calculateCurveLength(width, height);
+            const spacingBetweenLogos = totalCurveLength / totalLogos;
+            
+            // Placeholders for logo elements and their positions
+            const logoElems = [];
+            
+            for (let i = 0; i < totalLogos; i++) {
+                // Calculate position along curve with fixed spacing
+                const distanceAlongCurve = i * spacingBetweenLogos;
+                const t = distanceToT(distanceAlongCurve, width, height);
+                
+                // Create container for each logo
+                const containerDiv = document.createElement('div');
+                containerDiv.className = 'logo-container';
+                containerDiv.style.width = logoSize + 'px';
+                containerDiv.style.height = logoSize + 'px';
+                containerDiv.style.background = 'transparent';
+                containerDiv.style.pointerEvents = 'auto';
+                containerDiv.style.position = 'absolute';
+                containerDiv.style.overflow = 'visible';
+                
+                // The logo image
+                const img = document.createElement('img');
+                img.src = logos[i];
+                img.alt = "Logo";
+                img.width = logoSize;
+                img.height = logoSize;
+                img.style.background = 'transparent';
+                img.style.borderRadius = '0';
+                img.style.boxShadow = 'none';
+                img.style.pointerEvents = 'auto';
+                img.style.position = 'static';
+                img.style.display = 'block';
+                img.style.margin = '0 auto';
+                img.className = '';
+                containerDiv.appendChild(img);
+                track.appendChild(containerDiv);
+                
+                logoElems.push({
+                    containerDiv, 
+                    img, 
+                    t: t,
+                    distanceAlongCurve: distanceAlongCurve,
+                    spacing: spacingBetweenLogos
+                });
+            }
+            
+            // Store for animation
+            track._logoElems = logoElems;
+            track._width = width;
+            track._height = height;
+            track._logoSize = logoSize;
+            track._minGap = minGap;
+            track._totalLogos = totalLogos;
+            track._spacingBetweenLogos = spacingBetweenLogos;
+        }
+        
+        // Helper: Calculate the actual length of the arch curve
+        function calculateCurveLength(width, height) {
+            // Approximate curve length using multiple points
+            const numPoints = 100;
+            let totalLength = 0;
+            let prevPoint = null;
+            
+            for (let i = 0; i <= numPoints; i++) {
+                const t = i / numPoints;
+                const [x, y] = getArchCurvePoint(t, width, height);
+                const currentPoint = { x, y };
+                
+                if (prevPoint) {
+                    const dx = currentPoint.x - prevPoint.x;
+                    const dy = currentPoint.y - prevPoint.y;
+                    totalLength += Math.sqrt(dx * dx + dy * dy);
+                }
+                prevPoint = currentPoint;
+            }
+            
+            return totalLength;
+        }
+        
+        // Helper: Convert distance along curve to t parameter
+        function distanceToT(distance, width, height) {
+            const totalLength = calculateCurveLength(width, height);
+            const targetDistance = distance % totalLength;
+            
+            // Binary search to find the t value that gives us the target distance
+            let low = 0, high = 1;
+            const tolerance = 0.001;
+            
+            while (high - low > tolerance) {
+                const mid = (low + high) / 2;
+                const midDistance = calculateDistanceToT(mid, width, height);
+                
+                if (midDistance < targetDistance) {
+                    low = mid;
+                } else {
+                    high = mid;
+                }
+            }
+            
+            return (low + high) / 2;
+        }
+        
+        // Helper: Calculate distance from start of curve to a given t value
+        function calculateDistanceToT(t, width, height) {
+            const numPoints = 100;
+            let totalLength = 0;
+            let prevPoint = null;
+            
+            for (let i = 0; i <= numPoints * t; i++) {
+                const currentT = i / numPoints;
+                const [x, y] = getArchCurvePoint(currentT, width, height);
+                const currentPoint = { x, y };
+                
+                if (prevPoint) {
+                    const dx = currentPoint.x - prevPoint.x;
+                    const dy = currentPoint.y - prevPoint.y;
+                    totalLength += Math.sqrt(dx * dx + dy * dy);
+                }
+                prevPoint = currentPoint;
+            }
+            
+            return totalLength;
+        }
+
+        // Animation state
+        let lastScrollY = window.scrollY;
+        let scrollVelocity = 0;
+        let logoOffset = 0; // 0..1, how much the logos have shifted
+        let isAnimating = false;
+
+        function animateLogos() {
+            const track = document.getElementById('logo-carousel-track');
+            if (!track || !track._logoElems) return;
+            // Calculate scroll velocity
+            let newScrollY = window.scrollY;
+            let deltaY = newScrollY - lastScrollY;
+            // Use deltaY as velocity, but smooth it
+            scrollVelocity = scrollVelocity * 0.8 + deltaY * 0.2;
+            lastScrollY = newScrollY;
+            // If no scroll, slow down to stop
+            if (Math.abs(scrollVelocity) < 0.1) scrollVelocity = 0;
+            // Animation speed factor (tune for feel)
+            const speed = 0.0007; // how much t per px scrolled
+            logoOffset += scrollVelocity * speed;
+            // Clamp to 0..1 (loop)
+            if (logoOffset < 0) logoOffset += 1;
+            if (logoOffset > 1) logoOffset -= 1;
+            // Update logo positions
+            const { _logoElems: logoElems, _logoTGap: logoTGap, _width: width, _height: height, _logoSize: logoSize, _minGap: minGap, _totalLogos: totalLogos } = track;
+            for (let i = 0; i < logoElems.length; i++) {
+                // Each logo's t position
+                let t = (logoElems[i].t - logoOffset + 1) % 1;
+                // Curve point
+                let [x, y] = getArchCurvePoint(t, width, height);
+                // Center logo on point
+                logoElems[i].containerDiv.style.left = (x - logoSize/2) + "px";
+                logoElems[i].containerDiv.style.top = (y - logoSize/2) + "px";
+                // Fade at ends (left/right)
+                // Left fade: t near 0, Right fade: t near 1
+                let fade = 1;
+                const fadeZone = 0.08; // 8% of path at each end
+                if (t < fadeZone) {
+                    fade = t / fadeZone;
+                } else if (t > 1 - fadeZone) {
+                    fade = (1 - t) / fadeZone;
+                }
+                logoElems[i].containerDiv.style.opacity = fade;
+                // Hide if fully faded
+                logoElems[i].containerDiv.style.visibility = fade < 0.05 ? "hidden" : "visible";
+                // Z-index for overlap: higher in the middle
+                let z = Math.round(100 * (1 - Math.abs(t - 0.5)));
+                logoElems[i].containerDiv.style.zIndex = z;
+            }
+            // Continue animating if user is scrolling
+            if (Math.abs(scrollVelocity) > 0.01) {
+                isAnimating = true;
+                requestAnimationFrame(animateLogos);
+            } else {
+                isAnimating = false;
+            }
+        }
+
+        // Hover effect: grayscale to color, floating glow
+        document.addEventListener('mouseover', function(e) {
+            if (e.target && e.target.parentElement && e.target.parentElement.classList.contains('logo-container') && e.target.tagName === 'IMG') {
+                e.target.classList.add('logo-hovered');
+            }
+        });
+        document.addEventListener('mouseout', function(e) {
+            if (e.target && e.target.parentElement && e.target.parentElement.classList.contains('logo-container') && e.target.tagName === 'IMG') {
+                e.target.classList.remove('logo-hovered');
+            }
+        });
+
+        // Listen to scroll to trigger animation
+        window.addEventListener('scroll', () => {
+            if (!isAnimating) {
+                isAnimating = true;
+                requestAnimationFrame(animateLogos);
+            }
+        });
+
+        // Responsive: re-create on resize
+        window.addEventListener('resize', () => {
+            createLogoCarousel();
+            animateLogos();
+        });
+
+        // Initial setup
+        window.addEventListener('DOMContentLoaded', () => {
+            createLogoCarousel();
+            animateLogos();
+        });
+        </script>
+
         <!-- Tools Section (Re-purposed for Services/Expertise to match Bazil's style) -->
         <section id="tools" class="py-16 md:py-24 bg-gray-800 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
             <div class="container mx-auto text-center">
@@ -280,6 +703,7 @@
                 </div>
             </div>
         </section>
+
         <!-- Skills Section (Re-purposed for Technologies to match Bazil's style) -->
         <section id="skills" class="py-16 md:py-24 bg-gray-900 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
             <div class="container mx-auto text-center">
@@ -328,6 +752,7 @@
                 </div>
             </div>
         </section>
+
         <!-- Experience Section (Re-purposed for Our Process to match Bazil's style) -->
         <section id="experience" class="py-16 md:py-24 bg-gray-800 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
             <div class="container mx-auto text-center">
@@ -360,6 +785,7 @@
                 </div>
             </div>
         </section>
+
         <!-- Contact Section -->
         <section id="contact" class="py-16 md:py-24 bg-gray-900 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
             <div class="container mx-auto text-center">
@@ -386,10 +812,13 @@
                 </div>
             </div>
         </section>
+
     </main>
+
     <!-- Footer Section -->
     <footer class="bg-gray-800 text-white py-8 px-4 sm:px-6 lg:px-8 rounded-t-lg shadow-lg mt-8">
         <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+
             <!-- Company Info / About Section -->
             <div class="flex flex-col items-center md:items-start">
                 <h3 class="text-xl font-semibold mb-4 text-purple-300">About Bazil.</h3>
@@ -400,6 +829,7 @@
                     Generate Summary ✨
                 </button>
             </div>
+
             <!-- Quick Links Section -->
             <div class="flex flex-col items-center md:items-start">
                 <h3 class="text-xl font-semibold mb-4 text-purple-300">Quick Links</h3>
@@ -410,6 +840,7 @@
                     <li><a href="#contact" class="text-gray-400 hover:text-[var(--white)] transition duration-300 ease-in-out rounded-md focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-50">Contact</a></li>
                 </ul>
             </div>
+
             <!-- Contact Info / Social Media Section -->
             <div class="flex flex-col items-center md:items-start">
                 <h3 class="text-xl font-semibold mb-4 text-purple-300">Contact Info</h3>
@@ -430,13 +861,16 @@
                     </a>
                 </div>
             </div>
+
         </div>
+
         <!-- Copyright Notice -->
         <div class="border-t border-gray-700 mt-8 pt-6 text-center text-gray-500 text-sm">
             &copy; <span id="current-year"></span> Bazil. All rights reserved.
         </div>
     </footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="scripts.js"></script>
+    <script src="../scripts.js"></script>
 </body>
 </html>
