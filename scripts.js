@@ -87,7 +87,7 @@
         container.style.zIndex = '0';
 
         // Load the god_rays.json file
-        const response = await fetch('../assets/json/god_rays.json');
+        const response = await fetch('assets/json/god_rays.json');
         const shaderData = await response.json();
 
         scene = new THREE.Scene();

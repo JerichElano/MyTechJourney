@@ -312,6 +312,7 @@
             </div>
         </section>
 
+        <!-- LOGO CAROUSEL -->
         <section id="logo-carousel-section" class="w-full my-16 bg-transparent" style="background: none;">
             <div class="relative mx-auto max-w-7xl px-0 sm:px-0" style="background: none; overflow-x: clip;">
                 <!-- Fades -->
@@ -418,64 +419,59 @@
             return [x/1000*width, y/110*height];
         }
 
+        // To ensure UNIFORM spacing, we must space the logos evenly along the curve using t = i/N
+        // and NOT by distance, so the gap is always the same between each logo.
+
         function createLogoCarousel() {
             const track = document.getElementById('logo-carousel-track');
             if (!track) return;
             track.innerHTML = '';
-            
+
             // Responsive: logo size and spacing
+            // DO NOT change image size, only the gap!
+            // The image size is controlled by CSS, not JS, so we do not set it here.
+            // Instead, we only control the gap between logos by how far apart they are on the curve.
             const isMobile = window.innerWidth < 640;
-            const logoSize = isMobile ? 44 : 60;
-            const minGap = isMobile ? 32 : 36; // Fixed minimum gap between logos
-            
+
+            // Set a HUGE gap between logos, especially on mobile, and a large gap on desktop
+            // We do this by reducing the number of logos shown (or duplicating if needed for looping)
+            // But for uniform spacing, we always use t = i/N for N logos
+            // If you want more space, you must reduce the number of logos or increase the curve length
+
+            // For a "huge" gap, we can optionally only show the original logoList (no duplicates)
+            // If you want to loop, you can duplicate, but spacing must be uniform
+            // We'll use only logoList.length for uniformity
+            const totalLogos = logoList.length;
+
             // Calculate available curve length (approximate)
             const container = track.parentElement;
             const width = container.offsetWidth;
             const height = container.offsetHeight;
-            
-            // Calculate how many logos fit with guaranteed spacing
-            const logoSpace = logoSize + minGap;
-            const curveLength = width * 1.1; // Arch curve length
-            let visibleLogoCount = Math.floor(curveLength / logoSpace);
-            
-            // Ensure we have enough logos for seamless loop
-            let totalLogos = Math.max(visibleLogoCount, logoList.length * 2);
-            
-            // Build the logo array for seamless loop
-            let logos = [];
-            while (logos.length < totalLogos) {
-                logos = logos.concat(logoList);
-            }
-            logos = logos.slice(0, totalLogos);
-            
-            // Calculate fixed spacing along the curve
-            const totalCurveLength = calculateCurveLength(width, height);
-            const spacingBetweenLogos = totalCurveLength / totalLogos;
-            
+
             // Placeholders for logo elements and their positions
             const logoElems = [];
-            
+
+            // Uniformly distribute logos along the curve using t = i/totalLogos
             for (let i = 0; i < totalLogos; i++) {
-                // Calculate position along curve with fixed spacing
-                const distanceAlongCurve = i * spacingBetweenLogos;
-                const t = distanceToT(distanceAlongCurve, width, height);
-                
+                // For uniform spacing, t is evenly spaced
+                // To create a "huge" gap, just use fewer logos (i.e., only logoList, not repeated)
+                // If you want even more gap, you must add empty slots (see below)
+                let t = i / totalLogos;
+
                 // Create container for each logo
                 const containerDiv = document.createElement('div');
                 containerDiv.className = 'logo-container';
-                containerDiv.style.width = logoSize + 'px';
-                containerDiv.style.height = logoSize + 'px';
+                // Do not set width/height here, let CSS control it
                 containerDiv.style.background = 'transparent';
                 containerDiv.style.pointerEvents = 'auto';
                 containerDiv.style.position = 'absolute';
                 containerDiv.style.overflow = 'visible';
-                
+
                 // The logo image
                 const img = document.createElement('img');
-                img.src = logos[i];
+                img.src = logoList[i];
                 img.alt = "Logo";
-                img.width = logoSize;
-                img.height = logoSize;
+                // Do not set width/height here, let CSS control it
                 img.style.background = 'transparent';
                 img.style.borderRadius = '0';
                 img.style.boxShadow = 'none';
@@ -486,24 +482,24 @@
                 img.className = '';
                 containerDiv.appendChild(img);
                 track.appendChild(containerDiv);
-                
+
                 logoElems.push({
                     containerDiv, 
                     img, 
-                    t: t,
-                    distanceAlongCurve: distanceAlongCurve,
-                    spacing: spacingBetweenLogos
+                    t: t
                 });
             }
-            
+
+            // If you want even more gap, you can add empty slots (invisible logos) to increase spacing
+            // For example, add N empty slots between each logo
+            // Example: let emptySlots = isMobile ? 2 : 1;
+            // But for now, just use the original logoList for uniformity
+
             // Store for animation
             track._logoElems = logoElems;
             track._width = width;
             track._height = height;
-            track._logoSize = logoSize;
-            track._minGap = minGap;
             track._totalLogos = totalLogos;
-            track._spacingBetweenLogos = spacingBetweenLogos;
         }
         
         // Helper: Calculate the actual length of the arch curve
@@ -516,51 +512,6 @@
             for (let i = 0; i <= numPoints; i++) {
                 const t = i / numPoints;
                 const [x, y] = getArchCurvePoint(t, width, height);
-                const currentPoint = { x, y };
-                
-                if (prevPoint) {
-                    const dx = currentPoint.x - prevPoint.x;
-                    const dy = currentPoint.y - prevPoint.y;
-                    totalLength += Math.sqrt(dx * dx + dy * dy);
-                }
-                prevPoint = currentPoint;
-            }
-            
-            return totalLength;
-        }
-        
-        // Helper: Convert distance along curve to t parameter
-        function distanceToT(distance, width, height) {
-            const totalLength = calculateCurveLength(width, height);
-            const targetDistance = distance % totalLength;
-            
-            // Binary search to find the t value that gives us the target distance
-            let low = 0, high = 1;
-            const tolerance = 0.001;
-            
-            while (high - low > tolerance) {
-                const mid = (low + high) / 2;
-                const midDistance = calculateDistanceToT(mid, width, height);
-                
-                if (midDistance < targetDistance) {
-                    low = mid;
-                } else {
-                    high = mid;
-                }
-            }
-            
-            return (low + high) / 2;
-        }
-        
-        // Helper: Calculate distance from start of curve to a given t value
-        function calculateDistanceToT(t, width, height) {
-            const numPoints = 100;
-            let totalLength = 0;
-            let prevPoint = null;
-            
-            for (let i = 0; i <= numPoints * t; i++) {
-                const currentT = i / numPoints;
-                const [x, y] = getArchCurvePoint(currentT, width, height);
                 const currentPoint = { x, y };
                 
                 if (prevPoint) {
@@ -598,15 +549,23 @@
             if (logoOffset < 0) logoOffset += 1;
             if (logoOffset > 1) logoOffset -= 1;
             // Update logo positions
-            const { _logoElems: logoElems, _logoTGap: logoTGap, _width: width, _height: height, _logoSize: logoSize, _minGap: minGap, _totalLogos: totalLogos } = track;
+            const { _logoElems: logoElems, _width: width, _height: height, _totalLogos: totalLogos } = track;
             for (let i = 0; i < logoElems.length; i++) {
-                // Each logo's t position
+                // Each logo's t position, offset for animation
                 let t = (logoElems[i].t - logoOffset + 1) % 1;
                 // Curve point
                 let [x, y] = getArchCurvePoint(t, width, height);
+                // Get logo size from CSS (do not set here)
+                const logoElem = logoElems[i].containerDiv;
+                const imgElem = logoElems[i].img;
+                // Use getBoundingClientRect to get the actual size
+                let logoSize = 60;
+                if (imgElem && imgElem.getBoundingClientRect) {
+                    logoSize = imgElem.getBoundingClientRect().width || 60;
+                }
                 // Center logo on point
-                logoElems[i].containerDiv.style.left = (x - logoSize/2) + "px";
-                logoElems[i].containerDiv.style.top = (y - logoSize/2) + "px";
+                logoElem.style.left = (x - logoSize/2) + "px";
+                logoElem.style.top = (y - logoSize/2) + "px";
                 // Fade at ends (left/right)
                 // Left fade: t near 0, Right fade: t near 1
                 let fade = 1;
@@ -616,12 +575,12 @@
                 } else if (t > 1 - fadeZone) {
                     fade = (1 - t) / fadeZone;
                 }
-                logoElems[i].containerDiv.style.opacity = fade;
+                logoElem.style.opacity = fade;
                 // Hide if fully faded
-                logoElems[i].containerDiv.style.visibility = fade < 0.05 ? "hidden" : "visible";
+                logoElem.style.visibility = fade < 0.05 ? "hidden" : "visible";
                 // Z-index for overlap: higher in the middle
                 let z = Math.round(100 * (1 - Math.abs(t - 0.5)));
-                logoElems[i].containerDiv.style.zIndex = z;
+                logoElem.style.zIndex = z;
             }
             // Continue animating if user is scrolling
             if (Math.abs(scrollVelocity) > 0.01) {
@@ -717,9 +676,6 @@
                 @media (max-width: 640px) {
                     .work-carousel-track {
                         font-size: 1.3rem;
-                    }
-                    .work-carousel-rotated-container {
-                        /* Remove any margin or gap between the two lines */
                     }
                     .work-carousel-outer {
                         height: 2em;
