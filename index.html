@@ -69,6 +69,12 @@
                 Explore more<i class="fas fa-arrow-right ml-2"></i>
             </a>
         </section>
+        
+        <!-- Lightbox for simple carousel images -->
+        <div id="imageLightbox" class="hidden fixed inset-0 bg-black/80 z-[100] items-center justify-center p-4">
+            <button id="lightboxClose" aria-label="Close" class="absolute top-4 right-4 text-white text-3xl leading-none">&times;</button>
+            <img id="lightboxImg" src="" alt="Preview" class="max-w-[95vw] max-h-[90vh] object-contain rounded-md shadow-2xl" />
+        </div>
 
         <!-- ABOUT SECTION -->
         <section id="about" class="py-16 md:py-24 bg-transparent rounded-lg shadow-xl mx-5 lg:mx-auto max-w-7xl mt-8 px-6 relative">
@@ -121,117 +127,220 @@
         </section>
 
         <!-- PROJECTS SECTION -->
-        <section id="projects" class="py-16 md:py-24 bg-gray-900 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
-            <div class="carousel-header">
-                <div class="flex items-center justify-between mb-12">
-                    <h2 class="text-2xl sm:text-3xl font-bold text-[var(--white)]">Projects</h2>
-                    <div class="carousel-buttons flex space-x-4 ml-6">
-                        <button class="carousel-button prev" id="prevBtn">&#10094;</button>
-                        <button class="carousel-button next" id="nextBtn">&#10095;</button>
-                    </div>
+        <section id="image-carousel" class="py-16 md:py-24 bg-gray-900 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
+            <div class="mb-6">
+                <h2 class="text-2xl sm:text-3xl font-bold text-[var(--white)] text-center">Projects</h2>
+                <div class="flex items-center justify-between mt-6">
+                    <button class="carousel-button prev" id="imgPrevBtn">&#10094;</button>
+                    <button class="carousel-button next" id="imgNextBtn">&#10095;</button>
                 </div>
             </div>
-            <div class="carousel-wrapper" id="carouselWrapper">
-                <div class="carousel-slides" id="carouselSlides"
-                    ontouchstart="carouselTouchStart(event)"
-                    ontouchmove="carouselTouchMove(event)"
-                    ontouchend="carouselTouchEnd(event)"
-                    onmousedown="carouselMouseDown(event)"
-                    onmousemove="carouselMouseMove(event)"
-                    onmouseup="carouselMouseUp(event)"
-                    onmouseleave="carouselMouseLeave(event)"
-                    style="touch-action: pan-y;">
-                    <!-- Slide 1 -->
-                    <div class="carousel-slide" data-original-index="0">
+            <div class="carousel-wrapper" id="simpleCarouselWrapper">
+                <div class="carousel-slides" id="simpleCarouselSlides" style="touch-action: pan-y;">
+                    <div class="carousel-slide">
+                        <div class="image-aspect-ratio">
+                            <img src="assets/photos/projects/3DDigitalTrainer.png" alt="3D Digital Trainer">
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="image-aspect-ratio">
+                            <img src="assets/photos/projects/Aluminus.png" alt="Aluminus">
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
                         <div class="image-aspect-ratio">
                             <img src="assets/photos/projects/Talklas.png" alt="Talklas">
                         </div>
                     </div>
-                    <!-- Slide 2 -->
-                    <div class="carousel-slide" data-original-index="1">
-                        <div class="image-aspect-ratio">
-                            <img src="assets/photos/projects/Nexus.png" alt="Ordering System">
-                        </div>
-                    </div>
-                    <!-- Slide 3 -->
-                    <div class="carousel-slide" data-original-index="2">
+                    <div class="carousel-slide">
                         <div class="image-aspect-ratio">
                             <img src="assets/photos/projects/SmartTrashBin.png" alt="Smart Trash Bin">
                         </div>
                     </div>
-                    <!-- Slide 4 -->
-                    <div class="carousel-slide" data-original-index="3">
+                    <div class="carousel-slide">
                         <div class="image-aspect-ratio">
-                            <img src="assets/photos/projects/Aluminus.png" alt="Aluminus Protagonist">
+                            <img src="assets/photos/projects/Nexus.png" alt="Nexus Ordering System">
                         </div>
                     </div>
-                    <!-- Slide 5 -->
-                    <div class="carousel-slide" data-original-index="4">
+                    <div class="carousel-slide">
                         <div class="image-aspect-ratio">
-                            <img src="assets/photos/projects/3DDigitalTrainer.png" alt="3D Digital Trainer">
+                            <img src="assets/photos/projects/Talklas.png" alt="Talklas">
                         </div>
                     </div>
                 </div>
             </div>
         </section>
         <script>
-        // Swipe support for carousel
-        let startX = 0, currentX = 0, isDragging = false;
+        // Simple 3-at-a-time carousel: left image exits left, center -> left, right -> center, new enters from right
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrapper = document.getElementById('simpleCarouselWrapper');
+            const track = document.getElementById('simpleCarouselSlides');
+            const prevBtn = document.getElementById('imgPrevBtn');
+            const nextBtn = document.getElementById('imgNextBtn');
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxClose = document.getElementById('lightboxClose');
+            if (!wrapper || !track || !prevBtn || !nextBtn) return;
 
-        function carouselTouchStart(e) {
-            if (e.touches && e.touches.length === 1) {
-                startX = e.touches[0].clientX;
-                isDragging = true;
+            const slideWidthPercent = 100 / 3; // one card width
+            let isAnimating = false;
+            // Smoother animation config
+            const TRANSITION_MS = 700;
+            const EASING = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
+            // Promote to its own layer for smoother transforms
+            track.style.willChange = 'transform';
+            track.style.backfaceVisibility = 'hidden';
+            track.style.transform = 'translate3d(0,0,0)';
+            // Autoplay controls
+            const AUTOPLAY_INTERVAL_MS = 3000;
+            const RESUME_DELAY_MS = 2500;
+            let autoplayIntervalId = null;
+            let resumeTimeoutId = null;
+
+            function startAutoplay() {
+                if (autoplayIntervalId) return;
+                autoplayIntervalId = setInterval(() => {
+                    slideNext();
+                }, AUTOPLAY_INTERVAL_MS);
             }
-        }
-        function carouselTouchMove(e) {
-            if (!isDragging) return;
-            currentX = e.touches[0].clientX;
-        }
-        function carouselTouchEnd(e) {
-            if (!isDragging) return;
-            let deltaX = currentX - startX;
-            if (Math.abs(deltaX) > 50) {
-                if (deltaX < 0) {
-                    document.getElementById('nextBtn').click();
-                } else {
-                    document.getElementById('prevBtn').click();
+
+            function stopAutoplay() {
+                if (autoplayIntervalId) {
+                    clearInterval(autoplayIntervalId);
+                    autoplayIntervalId = null;
+                }
+                if (resumeTimeoutId) {
+                    clearTimeout(resumeTimeoutId);
+                    resumeTimeoutId = null;
                 }
             }
-            isDragging = false;
-            startX = 0;
-            currentX = 0;
-        }
 
-        // Mouse drag support (for desktop)
-        let mouseDown = false, mouseStartX = 0, mouseCurrentX = 0;
-        function carouselMouseDown(e) {
-            mouseDown = true;
-            mouseStartX = e.clientX;
-        }
-        function carouselMouseMove(e) {
-            if (!mouseDown) return;
-            mouseCurrentX = e.clientX;
-        }
-        function carouselMouseUp(e) {
-            if (!mouseDown) return;
-            let deltaX = mouseCurrentX - mouseStartX;
-            if (Math.abs(deltaX) > 50) {
-                if (deltaX < 0) {
-                    document.getElementById('nextBtn').click();
-                } else {
-                    document.getElementById('prevBtn').click();
-                }
+            function pauseAndResume() {
+                stopAutoplay();
+                resumeTimeoutId = setTimeout(() => {
+                    startAutoplay();
+                }, RESUME_DELAY_MS);
             }
-            mouseDown = false;
-            mouseStartX = 0;
-            mouseCurrentX = 0;
-        }
-        function carouselMouseLeave(e) {
-            mouseDown = false;
-            mouseStartX = 0;
-            mouseCurrentX = 0;
-        }
+
+            // Lightbox helpers
+            function openLightbox(src, alt) {
+                stopAutoplay();
+                if (lightboxImg) {
+                    lightboxImg.src = src;
+                    lightboxImg.alt = alt || '';
+                }
+                if (lightbox) {
+                    lightbox.classList.remove('hidden');
+                    lightbox.classList.add('flex');
+                }
+                document.body.style.overflow = 'hidden';
+            }
+            function closeLightbox() {
+                if (lightbox) {
+                    lightbox.classList.add('hidden');
+                    lightbox.classList.remove('flex');
+                }
+                if (lightboxImg) lightboxImg.src = '';
+                document.body.style.overflow = '';
+                startAutoplay();
+            }
+
+            function slideNext() {
+                if (isAnimating) return;
+                isAnimating = true;
+                track.style.transition = `transform ${TRANSITION_MS}ms ${EASING}`;
+                track.style.transform = `translate3d(-${slideWidthPercent}%, 0, 0)`;
+                const onEnd = () => {
+                    track.removeEventListener('transitionend', onEnd);
+                    track.appendChild(track.firstElementChild);
+                    track.style.transition = 'none';
+                    track.style.transform = 'translate3d(0,0,0)';
+                    requestAnimationFrame(() => { isAnimating = false; });
+                };
+                track.addEventListener('transitionend', onEnd);
+            }
+
+            function slidePrev() {
+                if (isAnimating) return;
+                isAnimating = true;
+                track.style.transition = 'none';
+                track.insertBefore(track.lastElementChild, track.firstElementChild);
+                track.style.transform = `translate3d(-${slideWidthPercent}%, 0, 0)`;
+                requestAnimationFrame(() => {
+                    track.style.transition = `transform ${TRANSITION_MS}ms ${EASING}`;
+                    track.style.transform = 'translate3d(0,0,0)';
+                    const onEnd = () => { track.removeEventListener('transitionend', onEnd); isAnimating = false; };
+                    track.addEventListener('transitionend', onEnd);
+                });
+            }
+
+            nextBtn.addEventListener('click', () => { slideNext(); pauseAndResume(); });
+            prevBtn.addEventListener('click', () => { slidePrev(); pauseAndResume(); });
+
+            // Touch swipe
+            let startX = 0, currentX = 0, dragging = false;
+            wrapper.addEventListener('touchstart', (e) => {
+                if (e.touches.length !== 1) return;
+                dragging = true; startX = e.touches[0].clientX; currentX = startX;
+                stopAutoplay();
+            }, { passive: true });
+            wrapper.addEventListener('touchmove', (e) => { if (!dragging) return; currentX = e.touches[0].clientX; }, { passive: true });
+            wrapper.addEventListener('touchend', () => {
+                if (!dragging) return; const delta = currentX - startX; dragging = false;
+                if (Math.abs(delta) > 50) { delta < 0 ? slideNext() : slidePrev(); }
+                pauseAndResume();
+            });
+
+            // Mouse drag
+            let mDown = false, mStart = 0, mCurr = 0;
+            wrapper.addEventListener('mousedown', (e) => { mDown = true; mStart = e.clientX; mCurr = mStart; stopAutoplay(); });
+            wrapper.addEventListener('mousemove', (e) => { if (!mDown) return; mCurr = e.clientX; });
+            wrapper.addEventListener('mouseup', () => {
+                if (!mDown) return; const delta = mCurr - mStart; mDown = false;
+                if (Math.abs(delta) > 50) { delta < 0 ? slideNext() : slidePrev(); }
+                pauseAndResume();
+            });
+            wrapper.addEventListener('mouseleave', () => { mDown = false; });
+
+            // Pause on hover over wrapper or images, resume after delay
+            wrapper.addEventListener('mouseenter', stopAutoplay);
+            wrapper.addEventListener('mouseleave', pauseAndResume);
+            Array.from(track.querySelectorAll('img')).forEach(img => {
+                img.style.cursor = 'zoom-in';
+                img.addEventListener('mouseenter', stopAutoplay);
+                img.addEventListener('mouseleave', pauseAndResume);
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openLightbox(img.src, img.alt);
+                });
+                img.addEventListener('touchstart', stopAutoplay, { passive: true });
+                img.addEventListener('touchend', (e) => {
+                    // If it was a tap (not a swipe), open lightbox
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openLightbox(img.src, img.alt);
+                }, { passive: false });
+            });
+
+            // Lightbox events
+            if (lightbox) {
+                lightbox.addEventListener('click', (e) => {
+                    // Close only when clicking backdrop (not the image)
+                    if (e.target === lightbox) closeLightbox();
+                });
+            }
+            if (lightboxClose) {
+                lightboxClose.addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
+            }
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox && !lightbox.classList.contains('hidden')) {
+                    closeLightbox();
+                }
+            });
+
+            // Start autoplay
+            startAutoplay();
+        });
         </script>
 
         <!-- EXPERIENCE SECTION -->
