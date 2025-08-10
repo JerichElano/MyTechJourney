@@ -28,16 +28,16 @@
             <!-- Desktop Navigation -->
             <div class="hidden md:flex space-x-6 transition-all duration-300 ease-in-out links">
                 <a href="#projects" class="px-2 py-1 rounded-md">Projects</a>
-                <a href="#tools" class="px-2 py-1 rounded-md">Tools</a>
                 <a href="#experience" class="px-2 py-1 rounded-md">Experience</a>
+                <a href="#tools" class="px-2 py-1 rounded-md">Tools</a>
                 <a href="#contact" class="px-2 py-1 rounded-md">Let's work together!</a>
             </div>
 
             <!-- Mobile Menu Links (Hidden by default) -->
             <div id="mobile-menu" class="flex flex-col space-y-2 md:hidden opacity-0 h-0 overflow-hidden transition-all duration-300 ease-in-out links">
                 <a href="#projects" class="px-2 py-1 rounded-md">Projects</a>
-                <a href="#tools" class="block px-2 py-1 rounded-md">Tools</a>
                 <a href="#experience" class="block px-2 py-1 rounded-md">Experience</a>
+                <a href="#tools" class="block px-2 py-1 rounded-md">Tools</a>
                 <a href="#contact" class="block px-2 py-1 rounded-md">Let's work together!</a>
             </div>
         </div>
@@ -121,301 +121,6 @@
                             </div>
                             <p class="text-gray-300 text-xs">I manage my time well, staying organized and meeting deadlines with ease.</p>
                         </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- PROJECTS SECTION -->
-        <section id="image-carousel" class="py-16 md:py-24 bg-gray-900 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
-            <div class="mb-6">
-                <h2 class="text-2xl sm:text-3xl font-bold text-[var(--white)] text-center">Projects</h2>
-                <div class="flex items-center justify-between mt-6">
-                    <button class="carousel-button prev" id="imgPrevBtn">&#10094;</button>
-                    <button class="carousel-button next" id="imgNextBtn">&#10095;</button>
-                </div>
-            </div>
-            <div class="carousel-wrapper" id="simpleCarouselWrapper">
-                <div class="carousel-slides" id="simpleCarouselSlides" style="touch-action: pan-y;">
-                    <div class="carousel-slide">
-                        <div class="image-aspect-ratio">
-                            <img src="assets/photos/projects/3DDigitalTrainer.png" alt="3D Digital Trainer">
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="image-aspect-ratio">
-                            <img src="assets/photos/projects/Aluminus.png" alt="Aluminus">
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="image-aspect-ratio">
-                            <img src="assets/photos/projects/Talklas.png" alt="Talklas">
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="image-aspect-ratio">
-                            <img src="assets/photos/projects/SmartTrashBin.png" alt="Smart Trash Bin">
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="image-aspect-ratio">
-                            <img src="assets/photos/projects/Nexus.png" alt="Nexus Ordering System">
-                        </div>
-                    </div>
-                    <div class="carousel-slide">
-                        <div class="image-aspect-ratio">
-                            <img src="assets/photos/projects/Talklas.png" alt="Talklas">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <script>
-        // Simple 3-at-a-time carousel: left image exits left, center -> left, right -> center, new enters from right
-        document.addEventListener('DOMContentLoaded', () => {
-            const wrapper = document.getElementById('simpleCarouselWrapper');
-            const track = document.getElementById('simpleCarouselSlides');
-            const prevBtn = document.getElementById('imgPrevBtn');
-            const nextBtn = document.getElementById('imgNextBtn');
-            const lightbox = document.getElementById('imageLightbox');
-            const lightboxImg = document.getElementById('lightboxImg');
-            const lightboxClose = document.getElementById('lightboxClose');
-            if (!wrapper || !track || !prevBtn || !nextBtn) return;
-
-            const slideWidthPercent = 100 / 3; // one card width
-            let isAnimating = false;
-            // Smoother animation config
-            const TRANSITION_MS = 700;
-            const EASING = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
-            // Promote to its own layer for smoother transforms
-            track.style.willChange = 'transform';
-            track.style.backfaceVisibility = 'hidden';
-            track.style.transform = 'translate3d(0,0,0)';
-            // Autoplay controls
-            const AUTOPLAY_INTERVAL_MS = 3000;
-            const RESUME_DELAY_MS = 2500;
-            let autoplayIntervalId = null;
-            let resumeTimeoutId = null;
-
-            function startAutoplay() {
-                if (autoplayIntervalId) return;
-                autoplayIntervalId = setInterval(() => {
-                    slideNext();
-                }, AUTOPLAY_INTERVAL_MS);
-            }
-
-            function stopAutoplay() {
-                if (autoplayIntervalId) {
-                    clearInterval(autoplayIntervalId);
-                    autoplayIntervalId = null;
-                }
-                if (resumeTimeoutId) {
-                    clearTimeout(resumeTimeoutId);
-                    resumeTimeoutId = null;
-                }
-            }
-
-            function pauseAndResume() {
-                stopAutoplay();
-                resumeTimeoutId = setTimeout(() => {
-                    startAutoplay();
-                }, RESUME_DELAY_MS);
-            }
-
-            // Lightbox helpers
-            function openLightbox(src, alt) {
-                stopAutoplay();
-                if (lightboxImg) {
-                    lightboxImg.src = src;
-                    lightboxImg.alt = alt || '';
-                }
-                if (lightbox) {
-                    lightbox.classList.remove('hidden');
-                    lightbox.classList.add('flex');
-                }
-                document.body.style.overflow = 'hidden';
-            }
-            function closeLightbox() {
-                if (lightbox) {
-                    lightbox.classList.add('hidden');
-                    lightbox.classList.remove('flex');
-                }
-                if (lightboxImg) lightboxImg.src = '';
-                document.body.style.overflow = '';
-                startAutoplay();
-            }
-
-            function slideNext() {
-                if (isAnimating) return;
-                isAnimating = true;
-                track.style.transition = `transform ${TRANSITION_MS}ms ${EASING}`;
-                track.style.transform = `translate3d(-${slideWidthPercent}%, 0, 0)`;
-                const onEnd = () => {
-                    track.removeEventListener('transitionend', onEnd);
-                    track.appendChild(track.firstElementChild);
-                    track.style.transition = 'none';
-                    track.style.transform = 'translate3d(0,0,0)';
-                    requestAnimationFrame(() => { isAnimating = false; });
-                };
-                track.addEventListener('transitionend', onEnd);
-            }
-
-            function slidePrev() {
-                if (isAnimating) return;
-                isAnimating = true;
-                track.style.transition = 'none';
-                track.insertBefore(track.lastElementChild, track.firstElementChild);
-                track.style.transform = `translate3d(-${slideWidthPercent}%, 0, 0)`;
-                requestAnimationFrame(() => {
-                    track.style.transition = `transform ${TRANSITION_MS}ms ${EASING}`;
-                    track.style.transform = 'translate3d(0,0,0)';
-                    const onEnd = () => { track.removeEventListener('transitionend', onEnd); isAnimating = false; };
-                    track.addEventListener('transitionend', onEnd);
-                });
-            }
-
-            nextBtn.addEventListener('click', () => { slideNext(); pauseAndResume(); });
-            prevBtn.addEventListener('click', () => { slidePrev(); pauseAndResume(); });
-
-            // Touch swipe
-            let startX = 0, currentX = 0, dragging = false;
-            wrapper.addEventListener('touchstart', (e) => {
-                if (e.touches.length !== 1) return;
-                dragging = true; startX = e.touches[0].clientX; currentX = startX;
-                stopAutoplay();
-            }, { passive: true });
-            wrapper.addEventListener('touchmove', (e) => { if (!dragging) return; currentX = e.touches[0].clientX; }, { passive: true });
-            wrapper.addEventListener('touchend', () => {
-                if (!dragging) return; const delta = currentX - startX; dragging = false;
-                if (Math.abs(delta) > 50) { delta < 0 ? slideNext() : slidePrev(); }
-                pauseAndResume();
-            });
-
-            // Mouse drag
-            let mDown = false, mStart = 0, mCurr = 0;
-            wrapper.addEventListener('mousedown', (e) => { mDown = true; mStart = e.clientX; mCurr = mStart; stopAutoplay(); });
-            wrapper.addEventListener('mousemove', (e) => { if (!mDown) return; mCurr = e.clientX; });
-            wrapper.addEventListener('mouseup', () => {
-                if (!mDown) return; const delta = mCurr - mStart; mDown = false;
-                if (Math.abs(delta) > 50) { delta < 0 ? slideNext() : slidePrev(); }
-                pauseAndResume();
-            });
-            wrapper.addEventListener('mouseleave', () => { mDown = false; });
-
-            // Pause on hover over wrapper or images, resume after delay
-            wrapper.addEventListener('mouseenter', stopAutoplay);
-            wrapper.addEventListener('mouseleave', pauseAndResume);
-            Array.from(track.querySelectorAll('img')).forEach(img => {
-                img.style.cursor = 'zoom-in';
-                img.addEventListener('mouseenter', stopAutoplay);
-                img.addEventListener('mouseleave', pauseAndResume);
-                img.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    openLightbox(img.src, img.alt);
-                });
-                img.addEventListener('touchstart', stopAutoplay, { passive: true });
-                img.addEventListener('touchend', (e) => {
-                    // If it was a tap (not a swipe), open lightbox
-                    e.preventDefault();
-                    e.stopPropagation();
-                    openLightbox(img.src, img.alt);
-                }, { passive: false });
-            });
-
-            // Lightbox events
-            if (lightbox) {
-                lightbox.addEventListener('click', (e) => {
-                    // Close only when clicking backdrop (not the image)
-                    if (e.target === lightbox) closeLightbox();
-                });
-            }
-            if (lightboxClose) {
-                lightboxClose.addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
-            }
-            document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && lightbox && !lightbox.classList.contains('hidden')) {
-                    closeLightbox();
-                }
-            });
-
-            // Start autoplay
-            startAutoplay();
-        });
-        </script>
-
-        <!-- EXPERIENCE SECTION -->
-        <section id="projects" class="py-16 md:py-24 bg-gray-900 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
-            <div class="cards-container">
-                <div class="card">
-                    <div class="card-header">
-                    <div class="icon">
-                        <svg fill="#ffffff" width="24" height="24" viewBox="0 0 24 24">
-                        <path
-                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.45 12.9 13 13.5 13 15h-2v-.5c0-1.1.45-2.11 1.17-2.83l1.24-1.26c.37-.36.59-.86.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.35 1.68-.93 2.25z"
-                        ></path>
-                        </svg>
-                    </div>
-                    <a href="#" class="link-icon">
-                        <svg fill="#ffffff" width="16" height="16" viewBox="0 0 24 24">
-                        <path
-                            d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59L7.76 15.83 9.17 17.24 19 5.41V9h2V3h-7z"
-                        ></path>
-                        </svg>
-                    </a>
-                    </div>
-                    <div class="card-content">
-                    <h3>AI-Powered Development</h3>
-                    <p class="subtitle">Smart Websites</p>
-                    <p class="description">
-                        We build AI-driven websites that adapt to users and automation.
-                    </p>
-                    </div>
-                    <div class="card-image-container">
-                    <img src="assets/photos/projects/Nexus.png" alt="AI-Powered Development" />
-                    </div>
-                </div>  
-            </div>
-        </section>
-
-        <section id="experience-cards" class="py-16 md:py-24 bg-[rgba(30,32,44,0.85)] backdrop-blur-md rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
-            <div class="container mx-auto">
-                <h2 class="text-4xl font-bold text-[var(--white)] mb-12 text-center">My Experience</h2>
-                <div class="flex flex-wrap justify-center gap-8">
-                    <!-- Experience Card 1 -->
-                    <div class="bg-[rgba(40,42,60,0.85)] backdrop-blur-lg border border-gray-700 rounded-xl shadow-lg p-6 max-w-xs flex flex-col items-center glassy-card transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
-                        <img src="assets/photos/experience/company1.png" alt="Company 1 Logo" class="w-20 h-20 object-cover rounded-full mb-4 border-2 border-[var(--accent1)] shadow-md">
-                        <div class="mb-3">
-                            <i class="fas fa-laptop-code text-3xl text-purple-400"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-[var(--white)] mb-2 text-center">Frontend Developer</h3>
-                        <p class="text-gray-300 text-sm text-center">Developed interactive and responsive web interfaces using React.js and Tailwind CSS, focusing on user experience and performance.</p>
-                    </div>
-                    <!-- Experience Card 2 -->
-                    <div class="bg-[rgba(40,42,60,0.85)] backdrop-blur-lg border border-gray-700 rounded-xl shadow-lg p-6 max-w-xs flex flex-col items-center glassy-card transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
-                        <img src="assets/photos/experience/company2.png" alt="Company 2 Logo" class="w-20 h-20 object-cover rounded-full mb-4 border-2 border-[var(--accent1)] shadow-md">
-                        <div class="mb-3">
-                            <i class="fas fa-server text-3xl text-green-400"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-[var(--white)] mb-2 text-center">Backend Engineer</h3>
-                        <p class="text-gray-300 text-sm text-center">Built scalable APIs and microservices with Node.js and Python, ensuring robust data management and security for enterprise clients.</p>
-                    </div>
-                    <!-- Experience Card 3 -->
-                    <div class="bg-[rgba(40,42,60,0.85)] backdrop-blur-lg border border-gray-700 rounded-xl shadow-lg p-6 max-w-xs flex flex-col items-center glassy-card transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
-                        <img src="assets/photos/experience/company3.png" alt="Company 3 Logo" class="w-20 h-20 object-cover rounded-full mb-4 border-2 border-[var(--accent1)] shadow-md">
-                        <div class="mb-3">
-                            <i class="fas fa-mobile-alt text-3xl text-blue-400"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-[var(--white)] mb-2 text-center">Mobile App Developer</h3>
-                        <p class="text-gray-300 text-sm text-center">Created cross-platform mobile apps with Flutter, delivering seamless user experiences and integrating IoT features for smart solutions.</p>
-                    </div>
-                    <!-- Experience Card 4 -->
-                    <div class="bg-[rgba(40,42,60,0.85)] backdrop-blur-lg border border-gray-700 rounded-xl shadow-lg p-6 max-w-xs flex flex-col items-center glassy-card transition-transform duration-300 hover:-translate-y-2 hover:shadow-2xl">
-                        <img src="assets/photos/experience/company4.png" alt="Company 4 Logo" class="w-20 h-20 object-cover rounded-full mb-4 border-2 border-[var(--accent1)] shadow-md">
-                        <div class="mb-3">
-                            <i class="fas fa-project-diagram text-3xl text-yellow-400"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-[var(--white)] mb-2 text-center">Project Lead</h3>
-                        <p class="text-gray-300 text-sm text-center">Led a team of developers and designers to deliver innovative digital products, managing timelines, client communication, and quality assurance.</p>
                     </div>
                 </div>
             </div>
@@ -733,6 +438,349 @@
         });
         </script>
 
+        <!-- PROJECTS SECTION -->
+        <section id="image-carousel" class="py-16 md:py-24 bg-gray-900 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
+            <div class="mb-6">
+                <h2 class="text-2xl sm:text-3xl font-bold text-[var(--white)] text-center">Projects</h2>
+                <div class="flex items-center justify-between mt-6">
+                    <button class="carousel-button prev" id="imgPrevBtn">&#10094;</button>
+                    <button class="carousel-button next" id="imgNextBtn">&#10095;</button>
+                </div>
+            </div>
+            <div class="carousel-wrapper" id="simpleCarouselWrapper">
+                <div class="carousel-slides" id="simpleCarouselSlides" style="touch-action: pan-y;">
+                    <div class="carousel-slide">
+                        <div class="image-aspect-ratio">
+                            <img src="assets/photos/projects/3DDigitalTrainer.png" alt="3D Digital Trainer">
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="image-aspect-ratio">
+                            <img src="assets/photos/projects/Aluminus.png" alt="Aluminus">
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="image-aspect-ratio">
+                            <img src="assets/photos/projects/Talklas.png" alt="Talklas">
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="image-aspect-ratio">
+                            <img src="assets/photos/projects/SmartTrashBin.png" alt="Smart Trash Bin">
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="image-aspect-ratio">
+                            <img src="assets/photos/projects/Nexus.png" alt="Nexus Ordering System">
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="image-aspect-ratio">
+                            <img src="assets/photos/projects/Talklas.png" alt="Talklas">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <script>
+        // Simple 3-at-a-time carousel: left image exits left, center -> left, right -> center, new enters from right
+        document.addEventListener('DOMContentLoaded', () => {
+            const wrapper = document.getElementById('simpleCarouselWrapper');
+            const track = document.getElementById('simpleCarouselSlides');
+            const prevBtn = document.getElementById('imgPrevBtn');
+            const nextBtn = document.getElementById('imgNextBtn');
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImg = document.getElementById('lightboxImg');
+            const lightboxClose = document.getElementById('lightboxClose');
+            if (!wrapper || !track || !prevBtn || !nextBtn) return;
+
+            const slideWidthPercent = 100 / 3; // one card width
+            let isAnimating = false;
+            // Smoother animation config
+            const TRANSITION_MS = 700;
+            const EASING = 'cubic-bezier(0.22, 0.61, 0.36, 1)';
+            // Promote to its own layer for smoother transforms
+            track.style.willChange = 'transform';
+            track.style.backfaceVisibility = 'hidden';
+            track.style.transform = 'translate3d(0,0,0)';
+            // Autoplay controls
+            const AUTOPLAY_INTERVAL_MS = 3000;
+            const RESUME_DELAY_MS = 2500;
+            let autoplayIntervalId = null;
+            let resumeTimeoutId = null;
+
+            function startAutoplay() {
+                if (autoplayIntervalId) return;
+                autoplayIntervalId = setInterval(() => {
+                    slideNext();
+                }, AUTOPLAY_INTERVAL_MS);
+            }
+
+            function stopAutoplay() {
+                if (autoplayIntervalId) {
+                    clearInterval(autoplayIntervalId);
+                    autoplayIntervalId = null;
+                }
+                if (resumeTimeoutId) {
+                    clearTimeout(resumeTimeoutId);
+                    resumeTimeoutId = null;
+                }
+            }
+
+            function pauseAndResume() {
+                stopAutoplay();
+                resumeTimeoutId = setTimeout(() => {
+                    startAutoplay();
+                }, RESUME_DELAY_MS);
+            }
+
+            // Lightbox helpers
+            function openLightbox(src, alt) {
+                stopAutoplay();
+                if (lightboxImg) {
+                    lightboxImg.src = src;
+                    lightboxImg.alt = alt || '';
+                }
+                if (lightbox) {
+                    lightbox.classList.remove('hidden');
+                    lightbox.classList.add('flex');
+                }
+                document.body.style.overflow = 'hidden';
+            }
+            function closeLightbox() {
+                if (lightbox) {
+                    lightbox.classList.add('hidden');
+                    lightbox.classList.remove('flex');
+                }
+                if (lightboxImg) lightboxImg.src = '';
+                document.body.style.overflow = '';
+                startAutoplay();
+            }
+
+            function slideNext() {
+                if (isAnimating) return;
+                isAnimating = true;
+                track.style.transition = `transform ${TRANSITION_MS}ms ${EASING}`;
+                track.style.transform = `translate3d(-${slideWidthPercent}%, 0, 0)`;
+                const onEnd = () => {
+                    track.removeEventListener('transitionend', onEnd);
+                    track.appendChild(track.firstElementChild);
+                    track.style.transition = 'none';
+                    track.style.transform = 'translate3d(0,0,0)';
+                    requestAnimationFrame(() => { isAnimating = false; });
+                };
+                track.addEventListener('transitionend', onEnd);
+            }
+
+            function slidePrev() {
+                if (isAnimating) return;
+                isAnimating = true;
+                track.style.transition = 'none';
+                track.insertBefore(track.lastElementChild, track.firstElementChild);
+                track.style.transform = `translate3d(-${slideWidthPercent}%, 0, 0)`;
+                requestAnimationFrame(() => {
+                    track.style.transition = `transform ${TRANSITION_MS}ms ${EASING}`;
+                    track.style.transform = 'translate3d(0,0,0)';
+                    const onEnd = () => { track.removeEventListener('transitionend', onEnd); isAnimating = false; };
+                    track.addEventListener('transitionend', onEnd);
+                });
+            }
+
+            nextBtn.addEventListener('click', slideNext);
+            prevBtn.addEventListener('click', slidePrev);
+
+            // Touch swipe
+            let startX = 0, currentX = 0, dragging = false;
+            wrapper.addEventListener('touchstart', (e) => {
+                if (e.touches.length !== 1) return;
+                dragging = true; startX = e.touches[0].clientX; currentX = startX;
+            }, { passive: true });
+            wrapper.addEventListener('touchmove', (e) => { if (!dragging) return; currentX = e.touches[0].clientX; }, { passive: true });
+            wrapper.addEventListener('touchend', () => {
+                if (!dragging) return; const delta = currentX - startX; dragging = false;
+                if (Math.abs(delta) > 50) { delta < 0 ? slideNext() : slidePrev(); }
+            });
+
+            // Mouse drag
+            let mDown = false, mStart = 0, mCurr = 0;
+            wrapper.addEventListener('mousedown', (e) => { mDown = true; mStart = e.clientX; mCurr = mStart; });
+            wrapper.addEventListener('mousemove', (e) => { if (!mDown) return; mCurr = e.clientX; });
+            wrapper.addEventListener('mouseup', () => {
+                if (!mDown) return; const delta = mCurr - mStart; mDown = false;
+                if (Math.abs(delta) > 50) { delta < 0 ? slideNext() : slidePrev(); }
+            });
+            wrapper.addEventListener('mouseleave', () => { mDown = false; });
+
+            // Only stop when image is clicked (no hover/touch pause)
+            Array.from(track.querySelectorAll('img')).forEach(img => {
+                img.style.cursor = 'zoom-in';
+                img.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openLightbox(img.src, img.alt);
+                });
+                img.addEventListener('touchend', (e) => {
+                    // Treat quick tap as click to open
+                    e.preventDefault();
+                    e.stopPropagation();
+                    openLightbox(img.src, img.alt);
+                }, { passive: false });
+            });
+
+            // Lightbox events
+            if (lightbox) {
+                lightbox.addEventListener('click', (e) => {
+                    // Close only when clicking backdrop (not the image)
+                    if (e.target === lightbox) closeLightbox();
+                });
+            }
+            if (lightboxClose) {
+                lightboxClose.addEventListener('click', (e) => { e.stopPropagation(); closeLightbox(); });
+            }
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox && !lightbox.classList.contains('hidden')) {
+                    closeLightbox();
+                }
+            });
+
+            // Start autoplay
+            startAutoplay();
+        });
+        </script>
+
+        <!-- WORK EXPERIENCE SECTION -->
+        <section id="work-experience" class="py-16 md:py-24 bg-[rgba(30,32,44,0.85)] backdrop-blur-md rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
+            <div class="container mx-auto">
+                <h2 class="text-4xl font-bold text-[var(--white)] mb-12 text-center">Work Experience</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Work Experience Card 1 -->
+                    <div class="we-card cursor-pointer hover:cursor-[url('./assets/JerichLogo.png')_16_16,_pointer]">
+                        <div class="we-card-inner">
+                            <div class="we-card-face we-card-front">
+                                <div class="work-experience-card">
+                                    <div class="card-header relative flex flex-col items-center justify-center space-y-3">
+                                        <div class="company-logo rounded-full w-20 h-20 p-2 bg-white/10 border border-white/10 backdrop-blur-md flex items-center justify-center">
+                                            <img src="assets/photos/logo/InnerSPARC.png" alt="InnerSPARC Logo" class="w-full h-full object-contain rounded-full">
+                                        </div>
+                                    </div>
+                                    <div class="card-content text-center flex flex-col items-center">
+                                        <h3 class="job-title">IT/Multimedia Intern</h3>
+                                        <p class="job-period">Aug 2024 – Sept 2024</p>
+                                        <p class="job-description text-justify">
+                                            Designed graphics, edited videos, built funnels and landing pages, and automated chatbots to support marketing campaigns. Demonstrated strong attention to detail, time management, and collaboration while driving digital innovation and audience engagement.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="we-card-face we-card-back">
+                                <img src="assets/photos/experience/InnerSPARC.png" alt="Image of Jerich" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Work Experience Card 2 -->
+                    <div class="we-card cursor-pointer hover:cursor-[url('assets/jerichIcon-white.png')_16_16,_pointer]">
+                        <div class="we-card-inner">
+                            <div class="we-card-face we-card-front">
+                                <div class="work-experience-card">
+                                    <div class="card-header relative flex flex-col items-center justify-center space-y-3">
+                                        <div class="company-logo rounded-full w-20 h-20 p-2 bg-white/10 border border-white/10 backdrop-blur-md flex items-center justify-center">
+                                            <img src="assets/photos/logo/ComElec.png" alt="ComElec Logo" class="w-full h-full object-contain rounded-full">
+                                        </div>
+                                    </div>
+                                    <div class="card-content text-center flex flex-col items-center">
+                                        <h3 class="job-title">ComElec Commissioner</h3>
+                                        <p class="job-period">May 2024 – Sept 2024</p>
+                                        <p class="job-description text-justify">
+                                            Oversaw campus elections with a focus on transparency, fairness, and rule enforcement. The role sharpened my organizational and decision-making skills under pressure, deepened my commitment to integrity, and strengthened my understanding of leadership in a community setting.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="we-card-face we-card-back">
+                                <img src="assets/photos/experience/ComElec.jpg" alt="Image of Jerich" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Work Experience Card 3 -->
+                    <div class="we-card cursor-pointer hover:cursor-[url('assets/jerichIcon-white.png')_16_16,_pointer]">
+                        <div class="we-card-inner">
+                            <div class="we-card-face we-card-front">
+                                <div class="work-experience-card">
+                                    <div class="card-header relative flex flex-col items-center justify-center space-y-3">
+                                        <div class="company-logo rounded-full w-20 h-20 p-2 bg-white/10 border border-white/10 backdrop-blur-md flex items-center justify-center">
+                                            <img src="assets/photos/logo/CSG.png" alt="CSG Logo" class="w-full h-full object-contain rounded-full">
+                                        </div>
+                                    </div>
+                                    <div class="card-content text-center flex flex-col items-center">
+                                        <h3 class="job-title">SAP Ambassador for CS</h3>
+                                        <p class="job-period">Sept 2022 – Sept 2023</p>
+                                        <p class="job-description text-justify">
+                                            Represented the Computer Science program by facilitating events, and coordinating with faculty and student leaders. The role enhanced my communication, leadership, and public speaking skills while allowing me to inspire others and foster meaningful connections.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="we-card-face we-card-back">
+                                <img src="assets/photos/experience/SAPCSC.jpg" alt="Image of Jerich" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section (Re-purposed for Technologies to match Bazil's style) -->
+        <section id="skills" class="py-16 md:py-24 bg-gray-900 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
+            <div class="container mx-auto text-center">
+                <h2 class="text-4xl font-bold text-[var(--white)] mb-12">Technologies We Master</h2>
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 text-lg">
+                    <div class="bg-gray-800 p-4 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
+                        <i class="fab fa-react text-5xl text-white-400 mb-2"></i>
+                        <p class="font-semibold text-gray-300">React.js</p>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
+                        <i class="fab fa-node-js text-5xl text-green-500 mb-2"></i>
+                        <p class="font-semibold text-gray-300">Node.js</p>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
+                        <i class="fab fa-html5 text-5xl text-orange-500 mb-2"></i>
+                        <p class="font-semibold text-gray-300">HTML5</p>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
+                        <i class="fab fa-css3-alt text-5xl text-white-500 mb-2"></i>
+                        <p class="font-semibold text-gray-300">CSS3</p>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
+                        <i class="fab fa-js-square text-5xl text-yellow-500 mb-2"></i>
+                        <p class="font-semibold text-gray-300">JavaScript</p>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
+                        <i class="fab fa-php text-5xl text-[var(--white)] mb-2"></i>
+                        <p class="font-semibold text-gray-300">PHP</p>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
+                        <i class="fab fa-python text-5xl text-white-600 mb-2"></i>
+                        <p class="font-semibold text-gray-300">Python</p>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
+                        <i class="fas fa-database text-5xl text-gray-400 mb-2"></i>
+                        <p class="font-semibold text-gray-300">SQL/NoSQL</p>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
+                        <i class="fab fa-aws text-5xl text-orange-400 mb-2"></i>
+                        <p class="font-semibold text-gray-300">AWS</p>
+                    </div>
+                    <div class="bg-gray-800 p-4 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
+                        <i class="fab fa-docker text-5xl text-white-500 mb-2"></i>
+                        <p class="font-semibold text-gray-300">Docker</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- TEXT CAROUSEL -->
         <section class="w-full py-8 overflow-hidden bg-transparent relative z-10">
             <style>
@@ -915,117 +963,6 @@
                     });
                 }
             </script>
-        </section>
-
-        <!-- Tools Section (Re-purposed for Services/Expertise to match Bazil's style) -->
-        <section id="tools" class="py-16 md:py-24 bg-gray-800 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
-            <div class="container mx-auto text-center">
-                <h2 class="text-4xl font-bold text-[var(--white)] mb-12">Our Expertise</h2>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                    <div class="bg-gray-900 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
-                        <i class="fas fa-desktop text-6xl text-white-400 mb-4"></i>
-                        <h3 class="text-xl font-semibold text-purple-300 mb-2">Web Design & Development</h3>
-                        <p class="text-gray-400">Creating visually appealing and highly functional websites from scratch.</p>
-                    </div>
-                    <div class="bg-gray-900 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
-                        <i class="fas fa-mobile-alt text-6xl text-green-400 mb-4"></i>
-                        <h3 class="text-xl font-semibold text-purple-300 mb-2">Responsive Solutions</h3>
-                        <p class="text-gray-400">Ensuring your site looks and performs perfectly on any device.</p>
-                    </div>
-                    <div class="bg-gray-900 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
-                        <i class="fas fa-cogs text-6xl text-red-400 mb-4"></i>
-                        <h3 class="text-xl font-semibold text-purple-300 mb-2">Custom Web Applications</h3>
-                        <p class="text-gray-400">Building tailored web applications to meet your specific business needs.</p>
-                    </div>
-                    <div class="bg-gray-900 p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
-                        <i class="fas fa-chart-line text-6xl text-yellow-400 mb-4"></i>
-                        <h3 class="text-xl font-semibold text-purple-300 mb-2">Performance Optimization</h3>
-                        <p class="text-gray-400">Enhancing site speed and efficiency for better user experience and SEO.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Section (Re-purposed for Technologies to match Bazil's style) -->
-        <section id="skills" class="py-16 md:py-24 bg-gray-900 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
-            <div class="container mx-auto text-center">
-                <h2 class="text-4xl font-bold text-[var(--white)] mb-12">Technologies We Master</h2>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 text-lg">
-                    <div class="bg-gray-800 p-4 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
-                        <i class="fab fa-react text-5xl text-white-400 mb-2"></i>
-                        <p class="font-semibold text-gray-300">React.js</p>
-                    </div>
-                    <div class="bg-gray-800 p-4 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
-                        <i class="fab fa-node-js text-5xl text-green-500 mb-2"></i>
-                        <p class="font-semibold text-gray-300">Node.js</p>
-                    </div>
-                    <div class="bg-gray-800 p-4 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
-                        <i class="fab fa-html5 text-5xl text-orange-500 mb-2"></i>
-                        <p class="font-semibold text-gray-300">HTML5</p>
-                    </div>
-                    <div class="bg-gray-800 p-4 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
-                        <i class="fab fa-css3-alt text-5xl text-white-500 mb-2"></i>
-                        <p class="font-semibold text-gray-300">CSS3</p>
-                    </div>
-                    <div class="bg-gray-800 p-4 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
-                        <i class="fab fa-js-square text-5xl text-yellow-500 mb-2"></i>
-                        <p class="font-semibold text-gray-300">JavaScript</p>
-                    </div>
-                    <div class="bg-gray-800 p-4 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
-                        <i class="fab fa-php text-5xl text-[var(--white)] mb-2"></i>
-                        <p class="font-semibold text-gray-300">PHP</p>
-                    </div>
-                    <div class="bg-gray-800 p-4 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
-                        <i class="fab fa-python text-5xl text-white-600 mb-2"></i>
-                        <p class="font-semibold text-gray-300">Python</p>
-                    </div>
-                    <div class="bg-gray-800 p-4 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
-                        <i class="fas fa-database text-5xl text-gray-400 mb-2"></i>
-                        <p class="font-semibold text-gray-300">SQL/NoSQL</p>
-                    </div>
-                    <div class="bg-gray-800 p-4 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
-                        <i class="fab fa-aws text-5xl text-orange-400 mb-2"></i>
-                        <p class="font-semibold text-gray-300">AWS</p>
-                    </div>
-                    <div class="bg-gray-800 p-4 rounded-md shadow-md hover:shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1 border border-gray-700">
-                        <i class="fab fa-docker text-5xl text-white-500 mb-2"></i>
-                        <p class="font-semibold text-gray-300">Docker</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Experience Section (Re-purposed for Our Process to match Bazil's style) -->
-        <section id="experience" class="py-16 md:py-24 bg-gray-800 rounded-lg shadow-xl mx-auto max-w-7xl mt-8 px-6">
-            <div class="container mx-auto text-center">
-                <h2 class="text-4xl font-bold text-[var(--white)] mb-12">Our Process</h2>
-                <div class="max-w-4xl mx-auto space-y-10">
-                    <!-- Process Step 1 -->
-                    <div class="bg-gray-900 p-6 rounded-lg shadow-md text-left border-l-4 border-purple-500">
-                        <h3 class="text-2xl font-semibold text-purple-300">1. Discovery & Planning</h3>
-                        <p class="text-xl text-gray-200 mb-2">Understanding your vision and requirements.</p>
-                        <p class="text-gray-400">We start by deeply understanding your goals, target audience, and project scope. This phase involves detailed discussions and planning to lay a solid foundation.</p>
-                    </div>
-                    <!-- Process Step 2 -->
-                    <div class="bg-gray-900 p-6 rounded-lg shadow-md text-left border-l-4 border-purple-500">
-                        <h3 class="text-2xl font-semibold text-purple-300">2. Design & Prototyping</h3>
-                        <p class="text-xl text-gray-200 mb-2">Crafting intuitive and engaging user experiences.</p>
-                        <p class="text-gray-400">Our design team creates wireframes, mockups, and interactive prototypes to visualize the user journey and aesthetic appeal before development begins.</p>
-                    </div>
-                    <!-- Process Step 3 -->
-                    <div class="bg-gray-900 p-6 rounded-lg shadow-md text-left border-l-4 border-purple-500">
-                        <h3 class="text-2xl font-semibold text-purple-300">3. Development & Implementation</h3>
-                        <p class="text-xl text-gray-200 mb-2">Bringing designs to life with clean, efficient code.</p>
-                        <p class="text-gray-400">Our developers meticulously build the application, focusing on performance, scalability, and security, using the latest technologies and best practices.</p>
-                    </div>
-                    <!-- Process Step 4 -->
-                    <div class="bg-gray-900 p-6 rounded-lg shadow-md text-left border-l-4 border-purple-500">
-                        <h3 class="text-2xl font-semibold text-purple-300">4. Testing & Deployment</h3>
-                        <p class="text-xl text-gray-200 mb-2">Ensuring quality and a smooth launch.</p>
-                        <p class="text-gray-400">Rigorous testing is performed across various devices and browsers. Once perfected, we assist with seamless deployment and provide post-launch support.</p>
-                    </div>
-                </div>
-            </div>
         </section>
 
         <!-- Contact Section -->

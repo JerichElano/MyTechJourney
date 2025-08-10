@@ -146,6 +146,63 @@
 
     // --- Parallax Effect for Main.png Image ---
     document.addEventListener('DOMContentLoaded', () => {
+        // Ensure custom cursor works by scaling source image to 32x32 via canvas
+        (function applyCustomCursor() {
+            const src = 'assets/jerichIcon-white.png';
+            const img = new Image();
+            img.crossOrigin = 'anonymous';
+            img.onload = () => {
+                try {
+                    const size = 32;
+                    const canvas = document.createElement('canvas');
+                    canvas.width = size;
+                    canvas.height = size;
+                    const ctx = canvas.getContext('2d');
+                    // Draw centered cover-fit
+                    const ratio = Math.min(size / img.width, size / img.height);
+                    const w = Math.round(img.width * ratio);
+                    const h = Math.round(img.height * ratio);
+                    const x = Math.round((size - w) / 2);
+                    const y = Math.round((size - h) / 2);
+                    ctx.clearRect(0, 0, size, size);
+                    ctx.drawImage(img, x, y, w, h);
+                    const dataUrl = canvas.toDataURL('image/png');
+                    const styleEl = document.createElement('style');
+                    styleEl.id = 'we-custom-cursor-style';
+                    styleEl.textContent = `
+                        .we-card, .we-card * { cursor: url(${dataUrl}) 16 16, pointer !important; }
+                    `;
+                    document.head.appendChild(styleEl);
+                } catch (e) {
+                    // Fallback: pointer
+                }
+            };
+            img.onerror = () => {
+                // ignore; keep default pointer
+            };
+            img.src = src;
+        })();
+        // Flip interaction for Work Experience cards
+        const weCards = document.querySelectorAll('.we-card');
+        weCards.forEach(card => {
+            const toggleFlip = (e) => {
+                // Prevent navigating if link-icons are clicked
+                const target = e.target;
+                if (target.closest && target.closest('.link-icon')) return;
+                card.classList.toggle('is-flipped');
+            };
+            card.addEventListener('click', toggleFlip);
+            card.setAttribute('tabindex', '0');
+            card.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    toggleFlip(e);
+                }
+            });
+        });
+
+        // No fullscreen buttons; removed previous behavior per request
+
         const heroSection = document.getElementById('home');
         const mainPersonImage = document.getElementById('main-person-image');
 
